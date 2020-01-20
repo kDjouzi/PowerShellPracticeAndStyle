@@ -1,75 +1,76 @@
-## The PowerShell Best Practices and Style Guide
+## Guide des Bonnes Pratiques et du Style dans PowerShell
 
 [Table Of Contents](#table-of-contents)
 
 <p align="center"><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" style="display: inline-block; float: left; vertical-align: middle; margin: 10px;"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a></p>
 
-This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/), please attribute to Don Jones, Matt Penny, Carlos Perez, Joel Bennett and the PowerShell Community.
+Ce travail fut créé sous license [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/), merci de l'attribuer à Don Jones, Matt Penny, Carlos Perez, Joel Bennett et la Communauté Powershell.
 
-###### You are free to:
+###### Vous êtes libre de :
 
-**Share** — copy and redistribute the material in any medium or format
+**Partager** — copier et redistribuer ce matériau via tout medium ou format
 
-**Adapt** — remix, transform, and build upon the material
+**Adapter** — remixer, transformer, et construire à partir de ce matériau
 
-The authors encourage you to redistribute this content as widely as possible, but require that you give credit to the primary authors below, and that you notify us on GitHub of any improvements you make.
+Les auteurs vous encouragent à redistribuer ce contenu aussi largement que possible, mais exigent que vous attribuiez son crédit aux auteurs primaires ci-dessous, et que vous nous notifiiez sur GitHub de toute amélioration que vous y apportez.
 
-### What are Best Practices
+### Que sont les Bonnes Pratiques ?
 
-_PowerShell Best Practices_ are what you should usually do as a starting point. They are ways of writing, thinking, and designing which make it _harder_ to get into trouble. The point of a _Best Practice_ is to help the reader to fall into the pit of success:
+_Les Bonnes Pratiques dans Powershell_ sont ce par quoi vous devriez habituellement commencer. Ce sont des façons d'écrire, penser, et concevoir qui vous _éloignent_ des ennuis. Le principe d'une _Bonne Pratique_ est d'aidezr le lecteur à tomber dans le puits du succès :
 
-> **The Pit of Success:** in stark contrast to a summit, a peak, or a journey across a desert to find victory through many trials and surprises, we want our customers to simply fall into winning practices by using our platform and frameworks.  To the extent that we make it easy to get into trouble we fail.
+> **Le Puits du Succès :** en contraste avec un sommet, un pic, ou un voyage au travers du désert pour trouver la victoire après moult épreuves et surprises, nous voulons que nos clients tombent simplement dans nos pratiques garantissant la victoire en utilisant notre plateforme et nos frameworks. Au point où si nous rendions les ennuis facile à atteindre, nous échouerions.
 
 > -- Rico Mariani, MS Research MindSwap Oct 2003.
 
-Like English spelling and grammar rules, PowerShell programming best practices and style rules nearly always have exceptions, but we are documenting a baseline for code structure, command design, programming, formatting, and even style which will help you to avoid common problems, and help you write more reusable, readable code -- because reusable code doesn't have to be rewritten, and readable code can be maintained.
+Comme les règles d'anglais et de grammaire, les règles de bonnes pratiques et de style PowerShell ont presque toujours des exceptions, mais nous documentons ici une référence de structure du code, design de commandes, programmation, formatage, et même de style qui vous aidera à éviter des problèmes communs, et vous aidera à écrire un code plus réutilisable et lisible -- parce que le code réutilisable n'a pas à être réécrit, et le code lisible peut être maintenu.
 
-Having said that, remember: the points in the Best Practices documents and the Style Guide are referred to as _practices_ and _guidelines_, not rules. If you're having trouble getting something done because you're trying to avoid _breaking_ a style or best practice rule, you've misunderstood the point: this document is pragmatic, rather than dogmatic. We'll leave dogmatism to teams and projects that require you to meet their specific guidelines.
+Ceci étant dit, rappelez-vous : les points abordés dans le Guide des Bonnes Pratiques et du Style dans PowerShell sont appelés _pratiques_ et _recommandations_, pas "règles". Si vous avez du mal à faire fonctionner quelque chose parce que vous essayez de ne pas _enfreindre_ une règle de style ou de bonne pratique, vous avez mal compris l'objectif : ce document est pragmatique, plutôt que dogmatique. Nous laisserons le dogmatisme aux équipes et projets qui exigent que vous suiviez leurs lignes directrices spécifiques.
 
-### Table of Contents
+### Sommaire
 
-The guidelines are divided into these sections:
+Les recommandations sont réparties dans ces sections :
 
-* [Style Guide (Introduction)](Style-Guide/Introduction.md)
-  * [Code Layout and Formatting](Style-Guide/Code-Layout-and-Formatting.md)
-  * [Function Structure](Style-Guide/Function-Structure.md)
-  * [Documentation and Comments](Style-Guide/Documentation-and-Comments.md)
-  * [Readability](Style-Guide/Readability.md)
-  * [Naming Conventions](Style-Guide/Naming-Conventions.md)
-* [Best Practices (Introduction)](Best-Practices/Introduction.md)
-  * [Naming Conventions](Best-Practices/Naming-Conventions.md)
-  * [Building Reusable Tools](Best-Practices/Building-Reusable-Tools.md)
-  * [Output and Formatting](Best-Practices/Output-and-Formatting.md)
-  * [Error Handling](Best-Practices/Error-Handling.md)
+* [Guide du Style (Introduction)](Style-Guide/Introduction.md)
+  * [Agencement et Formatage du Code](Style-Guide/Code-Layout-and-Formatting.md)
+  * [Structure des Fonctions](Style-Guide/Function-Structure.md)
+  * [Documentation et Commentaires](Style-Guide/Documentation-and-Comments.md)
+  * [Lisibilité](Style-Guide/Readability.md)
+  * [Conventions de Nommage](Style-Guide/Naming-Conventions.md)
+* [Bonnes Pratiques (Introduction)](Best-Practices/Introduction.md)
+  * [Conventions de Nommage](Best-Practices/Naming-Conventions.md)
+  * [Construire des Outils Réutilisables](Best-Practices/Building-Reusable-Tools.md)
+  * [Sortie et Formatage](Best-Practices/Output-and-Formatting.md)
+  * [Gestion d'Erreurs](Best-Practices/Error-Handling.md)
   * [Performance](Best-Practices/Performance.md)
-  * [Security](Best-Practices/Security.md)
-  * [Language, Interop and .Net](Best-Practices/Language-Interop-and-.Net.md)
-  * [Metadata, Versioning, and Packaging](Best-Practices/Metadata-Versioning-and-Packaging.md)
+  * [Sécurité](Best-Practices/Security.md)
+  * [Langage, Interopérabilité et .Net](Best-Practices/Language-Interop-and-.Net.md)
+  * [Metadonnées, Versioning, et Packaging](Best-Practices/Metadata-Versioning-and-Packaging.md)
 
 ### Current State:
 
-Remember [what we mean by _Best Practices_](#what-are-best-practices)
+Souvenez-vous de [ce que nous entendons par _Bonnes Pratiques_](#what-are-best-practices)
 
-The *PowerShell Best Practices* are always evolving, and continue to be edited and updated as the language and tools (and our community understanding of them) evolve. We encourage you to check back for new editions at least twice a year, by visiting [https://github.com/PoshCode/PowerShellPracticeAndStyle](https://github.com/PoshCode/PowerShellPracticeAndStyle)
+Les *Bonnes Pratiques dans PowerShell* sont en constante évolution, et continuent d'être éditées et mises à jour tant que les outils (et la compréhgension qu'a notre communauté de ceux-ci) évolue. Nous vous encourageaons à vérifier si une nouvelle édition est sortie au moins deux fois par an, en visitant [https://github.com/PoshCode/PowerShellPracticeAndStyle](https://github.com/PoshCode/PowerShellPracticeAndStyle)
 
+Le *Guide du Style PowerShell* en particulier est une PREEDITION, et nous travaillons toujours activement à résoudre nos désaccords concernant les règles de ce guide via le système d'issues GitHub.
 The *PowerShell Style Guide* in particular is in PREVIEW, and we are still actively working out our disagreements about the rules in the guide through the GitHub issues system.
 
-#### Contributing
+#### Contribuer
 
-Please use the issues system or GitHub pull requests to make corrections, contributions, and other changes to the text - we welcome your contributions!
+Nous vous invitons à utiliser le système d'issues GitHub ou les requêtes pull pour toute correction, contribution, ou autre changement au texte - nous invitons vos contributions !
 
-For more information, see [CONTRIBUTING](CONTRIBUTING.md)
+Pour plus d'informations, voir [CONTRIBUER](CONTRIBUTING.md)
 
 #### Credits
 
-_The Community Book of PowerShell Practices_ was originally compiled and edited by Don Jones and Matt Penny with input from the Windows PowerShell community on PowerShell.org
+_Le Livre Communautaire des Pratiques Powershell_ fut originellement compilé et éité par Don Jones et Matt Penny avec l'apport de la communauté Windows Powershell sur powershell.org
 
-Portions copyright (c) Don Jones, Matt Penny, 2014-2015
+Copyright partiel (c) Don Jones, Matt Penny, 2014-2015
 
-_The PowerShell Style Guide_ was originally created by Carlos Perez, for his students, and all the good parts were written by him.
+_Le Guide du Style Powershell_ fut originellement créé par Carlos Perez, pour ses étudiant.e.s, et toutes les bonnes parties ont été écrites par lui.
 
-Portions copyright (c) Carlos Perez, 2015
+Copyright partiel (c) Carlos Perez, 2015
 
-Any mistakes in either of these documents are there because Joel Bennett got involved. Please submit [issues](https://github.com/PoshCode/PowerShellPracticeAndStyle/issues) and help us correct them.
+Toute erreur que vous puissiez découvrir dans un de ces documents est là parce que Joel Bennett s'en est mêlé. Merci de soumettre ces [issues](https://github.com/PoshCode/PowerShellPracticeAndStyle/issues) et de nous aider à les corriger.
 
-Portions copyright (c) Joel Bennett, 2015
+Copyright partiel (c) Joel Bennett, 2015
