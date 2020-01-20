@@ -1,34 +1,33 @@
-# The PowerShell Best Practices and Style Guide
+Ce travail fut créé sous license [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/), merci de l'attribuer à Don Jones, Matt Penny, Carlos Perez, Joel Bennett et la Communauté Powershell.
 
-This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/), please attribute to Don Jones, Matt Penny, Carlos Perez, Joel Bennett and the PowerShell Community.
+###### Vous êtes libre de :
 
-###### You are free to:
+**Partager** — copier et redistribuer ce matériau via tout medium ou format
 
-**Share** — copy and redistribute the material in any medium or format
+**Adapter** — remixer, transformer, et construire à partir de ce matériau
 
-**Adapt** — remix, transform, and build upon the material 
-
-The authors encourage you to redistribute this content as widely as possible, but require that you give credit to the primary authors below, and that you notify us on GitHub of any improvements you make.
+Les auteurs vous encouragent à redistribuer ce contenu aussi largement que possible, mais exigent que vous attribuiez son crédit aux auteurs primaires ci-dessous, et que vous nous notifiiez sur GitHub de toute amélioration que vous y apportez.
 
 
 #### Credits
 
-_The Community Book of PowerShell Practices_ was originally compiled and edited by Don Jones and Matt Penny with input from the Windows PowerShell community on PowerShell.org
+_Le Livre Communautaire des Pratiques Powershell_ fut originellement compilé et éité par Don Jones et Matt Penny avec l'apport de la communauté Windows Powershell sur powershell.org
 
-Portions copyright (c) Don Jones, Matt Penny, 2014-2015
+Copyright partiel (c) Don Jones, Matt Penny, 2014-2015
 
-_The PowerShell Style Guide_ was originally created by Carlos Perez, for his students, and all the good parts were written by him. 
+_Le Guide du Style Powershell_ fut originellement créé par Carlos Perez, pour ses étudiant.e.s, et toutes les bonnes parties ont été écrites par lui.
 
-Portions copyright (c) Carlos Perez, 2015
+Copyright partiel (c) Carlos Perez, 2015
 
-Any mistakes in either of these documents are there because Joel Bennett got involved. Please submit [issues](https://github.com/PoshCode/PowerShellPracticeAndStyle/issues) and help us correct them.
+Toute erreur que vous puissiez découvrir dans un de ces documents est là parce que Joel Bennett s'en est mêlé. Merci de soumettre ces [issues](https://github.com/PoshCode/PowerShellPracticeAndStyle/issues) et de nous aider à les corriger.
 
-Portions copyright (c) Joel Bennett, 2015
+Copyright partiel (c) Joel Bennett, 2015
+
 
 #### NOTE
 
-The *PowerShell Best Practices* are always evolving, and continue to be edited and updated as the language and tools (and our community understanding of them) evolve. We encourage you to check back for new editions at least twice a year, by visiting [https://github.com/PoshCode/PowerShellPracticeAndStyle](https://github.com/PoshCode/PowerShellPracticeAndStyle)
+Les *Bonnes Pratiques dans PowerShell* sont en constante évolution, et continuent d'être éditées et mises à jour tant que les outils (et la compréhgension qu'a notre communauté de ceux-ci) évolue. Nous vous encourageaons à vérifier si une nouvelle édition est sortie au moins deux fois par an, en visitant [https://github.com/PoshCode/PowerShellPracticeAndStyle](https://github.com/PoshCode/PowerShellPracticeAndStyle)
 
-The *PowerShell Style Guide* in particular is in PREVIEW, and we are still actively working out our disagreements about the rules in the guide through the GitHub issues system. Please don't be surprised if over then next few weeks we change rules to contradict what they say at this current moment.
+Le *Guide du Style PowerShell* en particulier est une PREEDITION, et nous travaillons toujours activement à résoudre nos désaccords concernant les règles de ce guide via le système d'issues GitHub. Ne soyez donc pas surpris si nous changeons les règles pour contredire ce qu'elles disent actuellement dans les semaines à venir.
 
 <p align="center"><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" style="display: inline-block; float: left; vertical-align: middle; margin: 10px;"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a></p>
