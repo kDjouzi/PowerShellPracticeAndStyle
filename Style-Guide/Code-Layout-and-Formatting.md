@@ -1,12 +1,13 @@
-### Code Layout & Formatting
+### Agencement et Formatage du Code
 
-These guidelines are about readability. Some of them are arbitrary rules, but they are based on decades of traditions in programming, so while you may disagree with some rules (and should always follow the rules of individual projects), when we ask you to leave an empty line after a closing function brace, or two lines before functions, we're not being capricious, we're doing so because it makes it easier for experienced developers to scan your code.
+Ces lignes directrices ont pour sujet l'amélioration de la lisibilité. Certaines sont des règles arbitraires, mais sont basées sur des décennies de tradition dans la programmation, ainsi même si vous pourriez être en désaccord avec certaines règles (et vous devriez toujours suivre les règles des projets individuellement), quand nous vous demandons de laisser une ligne vide après une accolade fermant une fonction, ou deux lignes avant les fonctions, nous ne sommes pas capricieux, nous le faisons car cela rend votre code plus facile à scanner pour les développeurs expérimentés.
 
-#### Maintain Consistency in Layout
+#### Maintenir de la Cohérence dans l'Agencement
 
-Rules about indentation, line length, and capitalization are about consistency across code bases. Long practice has shown that it's easier to read and understand code when it looks familiar and you're not being distracted by details, which means that it's better for everyone in the community to follow a single set of rules.
+Les règles sur l'indentation, la longueur des lignes, et les majuscules sont là pour maintenir la cohérence entre différentes bases de code. L'expérience a montré qu'il est plus simple de lire et comprendre du code quand il a l'air familier et que vous n'êtes pas distraits par des détails, ce qui veut dire qu'il est plus profitable pour la communauté de suivre une seule combinaison de règles.
 
-We don't expect everyone to follow these guidelines, and rules for individual projects always trump these. Whether for legacy reasons, or to match guidelines for multiple languages in a single project, different projects may have different style guidelines. Since the goal is consistency, you should always abide by any style rules that are in place on the project you are contributing to.
+Nous ne nous attendons pas à ce que tout le monde suive ces lignes directrices, et les règles des projets individuels prennent toujorus le pas sur celles-ci.
+Whether for legacy reasons, or to match guidelines for multiple languages in a single project, different projects may have different style guidelines. Since the goal is consistency, you should always abide by any style rules that are in place on the project you are contributing to.
 
 If you do have a legacy project that is in source control and you decide to reformat code to adopt these rules, try to make all of your whitespace changes in a single commit that does _nothing_ but edit the whitespace. You should never reformat the whitespace on a file as _part_ of a content change because it makes the changes hard to spot.
 
