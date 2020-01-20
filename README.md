@@ -46,14 +46,13 @@ Les recommandations sont réparties dans ces sections :
   * [Langage, Interopérabilité et .Net](Best-Practices/Language-Interop-and-.Net.md)
   * [Metadonnées, Versioning, et Packaging](Best-Practices/Metadata-Versioning-and-Packaging.md)
 
-### Current State:
+### Etat Actuel :
 
 Souvenez-vous de [ce que nous entendons par _Bonnes Pratiques_](#what-are-best-practices)
 
 Les *Bonnes Pratiques dans PowerShell* sont en constante évolution, et continuent d'être éditées et mises à jour tant que les outils (et la compréhgension qu'a notre communauté de ceux-ci) évolue. Nous vous encourageaons à vérifier si une nouvelle édition est sortie au moins deux fois par an, en visitant [https://github.com/PoshCode/PowerShellPracticeAndStyle](https://github.com/PoshCode/PowerShellPracticeAndStyle)
 
 Le *Guide du Style PowerShell* en particulier est une PREEDITION, et nous travaillons toujours activement à résoudre nos désaccords concernant les règles de ce guide via le système d'issues GitHub.
-The *PowerShell Style Guide* in particular is in PREVIEW, and we are still actively working out our disagreements about the rules in the guide through the GitHub issues system.
 
 #### Contribuer
 
