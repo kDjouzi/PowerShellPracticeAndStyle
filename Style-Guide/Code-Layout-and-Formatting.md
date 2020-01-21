@@ -1,8 +1,8 @@
-### Agencement et Formatage du Code
+### Agencement et formatage du code
 
 Ces lignes directrices ont pour sujet l'amélioration de la lisibilité. Certaines sont des règles arbitraires, mais sont basées sur des décennies de tradition dans la programmation, ainsi même si vous pourriez être en désaccord avec certaines règles (et vous devriez toujours suivre les règles des projets individuellement), quand nous vous demandons de laisser une ligne vide après une accolade fermant une fonction, ou deux lignes avant les fonctions, nous ne sommes pas capricieux, nous le faisons car cela rend votre code plus facile à scanner pour les développeurs expérimentés.
 
-#### Maintenir de la Cohérence dans l'Agencement
+#### Maintenir de la cohérence dans l'agencement
 
 Les règles sur l'indentation, la longueur des lignes, et les majuscules sont là pour maintenir la cohérence entre différentes bases de code. L'expérience a montré qu'il est plus simple de lire et comprendre du code quand il a l'air familier et que vous n'êtes pas distraits par des détails, ce qui veut dire qu'il est plus profitable pour la communauté de suivre une seule combinaison de règles.
 
@@ -10,7 +10,7 @@ Nous ne nous attendons pas à ce que tout le monde suive ces lignes directrices,
 
 Si vous avez en effet un projet ancien en contrôle de source et que vous décidez d'en reformater le code pour adopter ces règles, essayez d'effectuer tous vos changements d'espacement (whitespace) en un seul commit qui ne fasse _rien d'autre_ que modifier l'espacement. Vous ne devriez jamais reformater les espaces d'un fichier dans _une partie_ d'un chagement de contenu car cela rend les autres changements difficilement trouvables.
 
-#### Conventions de Mise en Majuscule
+#### Conventions de mise en majuscule
 
 PowerShell n'est **pas** sensible à la casse, mais nous suivons des conventions de mise en majuscules pour rendre le code facile à lire. Elles sont basées sur les [conventions de mise en majuscules](https://docs.microsoft.com/fr-fr/dotnet/standard/design-guidelines/capitalization-conventions) que Microsoft a créées pour le framework .NET, puisque Powershell est un langage d'écriture de scripts .NET, et les cmdlets PowerShell sont principalement écrites dans des langages .NET suivant ces conventions.
 
@@ -96,7 +96,7 @@ function Test-Code {
 # Un cas exceptionnel :
 Get-ChildItem | Where-Object { $_.Length -gt 10mb }
 ```
-
+La raison principale pour laquelle nous faisons cette recommandation est pratique : aucune exception n'est nécessaire quand on suit cette règle, et quand le code écrit en suivant ce style, _de nouvelles lignes_
 The primary reason for this recommendation is practical: there are no exceptions necessary when following this rule, and when code is written following this style, _new lines_ of code can be inserted between any two lines with no risk of accidentally breaking the code by separating braces from their statement blocks. Thus, it's easier to follow, and makes errors less likely.
 
 Because this choice was somewhat contentious in the community (about 1/3 of voters opposed), it's worth adding some addition reasoning here: First: in some historical consoles, it was necessary to write this way, so much of the early PowerShell code follows this style anyway. Second: PowerShell functions which accept scriptblocks (such as `ForEach-Object` and `Where-Object`) are common, and an _inherent_ part of the syntax of important PowerShell-based domain-specific languages such as DSC. Since it's **required** to place the opening brace on the end of the line in those cases, the only _consistent_ option is to follow OTBS.
