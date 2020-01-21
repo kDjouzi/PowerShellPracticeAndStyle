@@ -6,37 +6,36 @@ Ces lignes directrices ont pour sujet l'amélioration de la lisibilité. Certain
 
 Les règles sur l'indentation, la longueur des lignes, et les majuscules sont là pour maintenir la cohérence entre différentes bases de code. L'expérience a montré qu'il est plus simple de lire et comprendre du code quand il a l'air familier et que vous n'êtes pas distraits par des détails, ce qui veut dire qu'il est plus profitable pour la communauté de suivre une seule combinaison de règles.
 
-Nous ne nous attendons pas à ce que tout le monde suive ces lignes directrices, et les règles des projets individuels prennent toujorus le pas sur celles-ci.
-Whether for legacy reasons, or to match guidelines for multiple languages in a single project, different projects may have different style guidelines. Since the goal is consistency, you should always abide by any style rules that are in place on the project you are contributing to.
+Nous ne nous attendons pas à ce que tout le monde suive ces lignes directrices, et les règles des projets individuels prennent toujours le pas sur celles-ci. Que ce soit pour des raisons d'ancienneté, ou pour suivre les lignes directrices de plusieurs langages dans un seul projet, des projets différents peuvent avoir des directives différentes quant au style. L'objectif étant la cohérence, vous devriez toujours demeurer respectueu.x.se des règles de style en place dans le projet auquel vous apportez votre contribution.
 
-If you do have a legacy project that is in source control and you decide to reformat code to adopt these rules, try to make all of your whitespace changes in a single commit that does _nothing_ but edit the whitespace. You should never reformat the whitespace on a file as _part_ of a content change because it makes the changes hard to spot.
+Si vous avez en effet un projet ancien en contrôle de source et que vous décidez d'en reformater le code pour adopter ces règles, essayez d'effectuer tous vos changements d'espacement (whitespace) en un seul commit qui ne fasse _rien d'autre_ que modifier l'espacement. Vous ne devriez jamais reformater les espaces d'un fichier dans _une partie_ d'un chagement de contenu car cela rend les autres changements difficilement trouvables.
 
-#### Capitalization Conventions
+#### Conventions de Mise en Majuscule
 
-PowerShell is **not** case sensitive, but we follow capitalization conventions to make code easy to read. They are based on the [capitalization conventions](https://msdn.microsoft.com/en-us/library/ms229043) Microsoft created for the .NET framework, since PowerShell is a .NET scripting language, and PowerShell cmdlets are primarily written in .NET languages following those guidelines.
+PowerShell n'est **pas** sensible à la casse, mais nous suivons des conventions de mise en majuscules pour rendre le code facile à lire. Elles sont basées sur les [conventions de mise en majuscules](https://docs.microsoft.com/fr-fr/dotnet/standard/design-guidelines/capitalization-conventions) que Microsoft a créées pour le framework .NET, puisque Powershell est un langage d'écriture de scripts .NET, et les cmdlets PowerShell sont principalement écrites dans des langages .NET suivant ces conventions.
 
-##### Terminology
+##### Terminologie
 
-* lowercase - all lowercase, no word separation
-* UPPERCASE - all capitals, no word separation
-* PascalCase - capitalize the first letter of each word
-* camelCase - capitalize the first letter of each word _except_ the first.
+* minuscules - tout en minuscules, mots non séparés
+* MAJUSCULES - tout en majuscules, mots non séparés
+* PascalCase - la première lettre de chaque mot est en majuscules
+* camelCase - la première lettre de chaque mot _sauf_ le premier est en majuscules
 
-PowerShell uses PascalCase for _all_ public identifiers: module names, function or cmdlet names, class, enum, and attribute names, public fields or properties, global variables and constants, etc. In fact, since the _parameters_ to PowerShell commands are actually _properties_ of .Net classes, even parameters use PascalCase rather than camelCase.
+PowerShell utilise la PascalCase pour _tous_ les identifiants publics : noms de modules, noms de fonctions ou cmdlets, classes, énumérateurs, champs ou pripriétés publiques, variables globales et constantes, etc. Et au fond, puisque les _paramètres_ des commandes PowerShell sont en fait des _propriétés_ de classes .Net, même les paramètres utilisent la PascalCase plutôt que la camelCase.
 
-PowerShell language keywords are written in lower case (yes, even `foreach` and `dynamicparam`), as well as operators such as `-eq` and `-match`. The keywords in comment-based help are written in UPPERCASE to make it easy to spot them among the dense prose of documentation.
+Les mots-clés du langage PowerShell sont écrits en minuscules (oui, même `foreach` et `dynamicparam`), de même que les opérateurs tels que `-eq`et `-match`. Les mots-clés dans les indications en commentaire sont écrits en MAJUSCULES pour les faire ressortir dans cette dense prose qu'est la documentation.
 
 ```powershell
 function Write-Host {
     <#
     .SYNOPSIS
-        Writes customized output to a host.
+        Ecrit une sortie personnalisée dans un hôte.
     .DESCRIPTION
-        The Write-Host cmdlet customizes output. You can specify the color of text by using
-        the ForegroundColor parameter, and you can specify the background color by using the
-        BackgroundColor parameter. The Separator parameter lets you specify a string to use to
-        separate displayed objects. The particular result depends on the program that is
-        hosting Windows PowerShell.
+        Le cmdlet Write-Host personnalise la sortie. Vous pouvez spécifier la couleur du texte 
+        en utilisant le paramètre ForegroundColor, et vous pouvez spécifier la couleur d'arrière-plan
+        en utilisant le paramètre BackgroundColor. Le paramètre Separator vous laisse spécifier
+        une chaîne de caractères pouvant être utilisée pour séparer les objets affichés. Le
+        résultat obtenu dépendra du programme qui hoste Windows Powershell.
     #>
     [CmdletBinding()]
     param(
@@ -60,19 +59,19 @@ function Write-Host {
     ...
 ```
 
-As stated previously, PowerShell uses PascalCase for _all_ public identifiers. Function names should follow PowerShell's `Verb-Noun` naming conventions, using PascalCase within both Verb and Noun.
+Comme dit précédemment, PowerShell utilise la PascalCase pour _tous_ les identifiants publics. Les noms de fonctions devraient suivre les conventions de nommage `Verbe-Nom` de PowerShell, en utilisant la PascalCase dans le Verbe et le Nom.
 
-A special case is made for two-letter acronyms in which both letters are capitalized, as in the variable `$PSBoundParameters` or the command `Get-PSDrive`. Note that ([as specified in the .NET guidelines](https://msdn.microsoft.com/en-us/library/ms229043#Anchor_1)) this does not affect the commonly capitalized (but not acronym) words "OK" and "ID" . You should also not extend it to compound acronyms, such as when Azure's Resource Manager (RM) meets a Virtual Machine (VM) in `Start-AzureRmVM`...
+Une exception est faite pour les acronymes à deux lettres dans lesquelles les deux lettres sont en majuscule, comme dans la variable `$PSBoundParameters` ou la commande `Get-PSDrive`. Notez que [comme spécifié dans les lignes directrices .NET](https://docs.microsoft.com/fr-fr/dotnet/standard/design-guidelines/capitalization-conventions#capitalization-rules-for-identifiers) cela n'affecte pas "OK" et "ID",  mots usuellement mis en majuscules - ce ne sont pas des acronymes. Vous ne devriez pas non plus étendre cette règle aux acronymes composés, comme quand le Resource Manager d'Azure (RM) rencontre une Machine Virtuelle (VM) dans `Start-AzureRmVM`...
 
-> We are aware that there are **many** places where these conventions have not been followed properly for various reasons -- you should consider these _exceptions_ (such as for COM interop) or _mistakes_ (such as `System.Data.SqlClient.SQLDebugging`), but not a reason for you to disregard the conventions.
+> Nous sommes informés du fait que ces règles n'ont pas été respectées pour une raison ou une autre à **beaucoup** d'occasions -- vous devriez considérer ces occasions comme des _exceptions_ (comme pour COM Interop) ou des _erreurs_ (comme `System.Data.SqlClient.SQLDebugging`), mais pas comme une raison de ne tenir aucun compte des conventions voire les mépriser.
 
-If you wish, you may use camelCase for variables within your functions (or modules) to distinguish _private_ variables from parameters, but this is a matter of taste. Shared variables should be distinguished by using their scope name, such as `$Script:PSBoundParameters` or `$Global:DebugPreference`. If you are using camelCase for a variable that starts with a two-letter acronym (where both letters are capitalized), both letters should be set to lowercase (such as `adComputer`).
+Si vous le voulez, vous pouvez utiliser la camelCase pour les variables dans vos fonctions (ou modules) pour distinguer les variables _privées_ des paramètres, mais c'est uniquement une question de goûts personnels. Les variables partagées devraient se reconnaître par l'utilisation leur portée, comme  `$Script:PSBoundParameters` ou `$Global:DebugPreference`. Si vous utilisez la camelCase pour une variable qui commence par un acronyme de deux lettres (et dont les deux lettres sont en majuscules), ces deux lettres devraient être mises en minuscules (comme dans `adComputer`).
 
-#### One True Brace Style
+#### Le Seul Vrai Style d'Indentation
 
-This guide recommends the so-called ["One True Brace Style" variant to K&R](https://github.com/PoshCode/PowerShellPracticeAndStyle/issues/81#issuecomment-285835313), which requires that every braceable _statement_ should  have the opening brace on the _end of a line_, and the closing brace at the _beginning of a line_.
+Ce guide recommande la [variante du K&R appelée "Seul Vrai Style d'Indentation"](https://github.com/PoshCode/PowerShellPracticeAndStyle/issues/81#issuecomment-285835313), qui requiert que chaque _déclaration_ qui puisse être entre des accolades ait son accolade ouvrante _en fin de ligne_ et son accolade fermante _en début de ligne_.
 
-There is one notable exception when passing small scriptblocks to parameters (where K&R would allow leaving off the braces entirely), we allow putting the entire statement on a single line.
+Le passage de petits blocs de script aux paramètres est une exception notable (où K&R autoriserait de ne pas utiliser d'accolades), nous autorisons à mettre la déclaration complète sur une seule ligne.
 
 ```powershell
 enum Color {
@@ -94,7 +93,7 @@ function Test-Code {
     }
 }
 
-# An Exception case:
+# Un cas exceptionnel :
 Get-ChildItem | Where-Object { $_.Length -gt 10mb }
 ```
 
