@@ -116,46 +116,47 @@ end {
 
 Vous pouvez toujours effacer ou ignorer un des blocs (ou ajouter le bloc `begin`), ajouter des paramètres et validation nécessaire et ainsi de suite, mais vous devriez **éviter** d'écrire des scripts ou fonctions sans `[CmdletBinding()]`, et vous devriez toujours au moins _penser à_ lui faire accepter des entrées de pipelines.
 
-#### Prefer: param(), begin, process, end
+#### Préférez : param(), begin, process, end
 
-Having a script written in the order of execution makes the intent clearer. Since there is no functional reason to have these blocks out of order (they _will_ still be executed in the normal order), writing them out of order can be confusing, and makes code more difficult to maintain and debug.
+Avoir un script écrit dans l'ordre d'exécution rend l'intention plus claire. Puisqu'il n'y a pas de raison fonctionnelle de mettre ces blocs dans le désordre (ils _seront_ exécutés dans l'ordre normal), les écrire dans le désordre peut être déroutant, et rendre le code plus difficile à maintenir et déboguer.
 
-More explicit code is more maintainable. While PowerShell allows leaving off the explicit name of the `end` block (and even has a `filter` keyword that converts the anonymous block to a `process` block), we recommend against using these features as it results in less explicit code.
+Un code plus explicite est mainteable. Même si PowerShell autorise à se passer du bloc `end` (et a même un mot-clé `filter` qui convertit le bloc anonyme en bloc `process`), nous vous recommandons de ne pas utiliser ces caractéristiques car cela rend le code moins explicite.
 
-#### Indentation
+#### L'Indentation
 
-##### Use four *spaces* per indentation level
+##### Utilisez quatre *espaces* par niveau d'indentation
 
-Usually you will press the `[Tab]` key to indent, but most editors can be configured to insert spaces instead of actual tab characters. For most programming languages and editors (including PowerShell ISE) the default is four spaces, and that's what we recommend. Different teams and projects may have different standards, and when contributing to a project, you should abide by the predominant style, of course.
+Dans la plupart des cas vous n'auriez qu'à appuyer sur la touche `[Tab]` pour indenter, et la plupart des éditeurs peuvent être configurés à insérer quatre espaces au lieu d'un caractère de tabulation. La plupart des langages de programmation et éditeurs (PowerSHell ISE compris) utilisent quatre espaces par défaut, et c'est ce que nous recommandons. Des équipes et projets différent.e.s peuvent avoir des standards différents, et quand vous contribuez à un projet, vous devriez vous conformer au style prédominant, bien évidemment.
 
 ```powershell
 function Test-Code {
-    foreach ($exponent in 1..10) {
-        [Math]::Pow(2, $exponent)
+    foreach ($exposant in 1..10) {
+        [Math]::Pow(2, $exposant)
     }
 }
 ```
 
-Indenting more than 4-spaces is acceptable for continuation lines (when you're wrapping a line which was too long). In such cases you might indent more than one level, or even indent indent an odd number of spaces to line up with a method call or parameter block on the line before.
+Indenter plus de 4 espaces est acceptable pour les lignes de continuation (quand vous divisez une ligne qui était trop longue). Dans ces cas vous pourriez indenter de plus d'un niveau, ou même indenter d'un nombre d'espaces impair pour vous aligner avec un appel de méthode ou un bloc de paramètre sur la ligne précédente.
 
 ```powershell
 function Test-Code {
     foreach ($base in 1,2,4,8,16) {
-        foreach ($exponent in 1..10) {
+        foreach ($exposant in 1..10) {
             [System.Math]::Pow($base,
-                               $exponent)
+                               $exposant)
     }
 }
 ```
 
-#### Maximum Line Length
+#### Longueur de ligne maximale
 
-Limit lines to 115 characters when possible.
+Limitez les lignes à 115 caractères si possible.
 
-Keeping lines to a small width allows scripts to be read in _one_ direction (top to bottom) without scrolling back-and-forth horizontally. What, exactly, this width should be is a one of the favorite arguing points among developers on the internet (more splintered than emacs vs vi or gnu GPL vs MIT).
+Se tenir à des lignes peu larges permet au script d'être lu dans _une_ direction (de haut en bas) sans faire d'allers-retours horizontaux. La largeur exacte qu'une ligne devrait faire est un des sujets de dispute favoris des développeurs sur internet (plus fragmenté encore que emacs contre vi ou gnu GPL contre MIT).
 
-In this guide we use two particular sources for the maximum line width:
+Nous utilisons dans ce guide deux sources en particulier pour la largeur de ligne maximale :
 
+La console PowerShell fait, par défaut, 120 caractères de large, mais n'autorise que 119 caractères sur les lignes de sortie, et à l'entrée d'un texte multilignes, Powershell utilise un 
 The PowerShell console is, by default, 120 characters wide, but it allows only 119 characters on output lines, and when entering multi-line text, PowerShell uses a line continuation prompt: `>>>` and thus limits your line length to 116 anyway.
 
 Github's current maximum line width varies between 121 and 126 depending on your browser and OS (and thus, font). However, the 115 line length suggested by PowerShell would be enough to even allow side-by-side diffs to be displayed without scrolling or wrapping on the current "standard" 1080p monitor.
