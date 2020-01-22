@@ -69,7 +69,7 @@ Si vous le voulez, vous pouvez utiliser la camelCase pour les variables dans vos
 
 #### Le Seul Vrai Style d'Indentation
 
-Ce guide recommande la [variante du K&R appelée "Seul Vrai Style d'Indentation"](https://github.com/PoshCode/PowerShellPracticeAndStyle/issues/81#issuecomment-285835313), qui requiert que chaque _déclaration_ qui puisse être entre des accolades ait son accolade ouvrante _en fin de ligne_ et son accolade fermante _en début de ligne_.
+Ce guide recommande la [variante du K&R appelée "Seul Vrai Style d'Indentation"](https://github.com/PoshCode/PowerShellPracticeAndStyle/issues/81#issuecomment-285835313)(nom anglais : One True Brace Style, abrégé OTBS), qui requiert que chaque _déclaration_ qui puisse être entre des accolades ait son accolade ouvrante _en fin de ligne_ et son accolade fermante _en début de ligne_.
 
 Le passage de petits blocs de script aux paramètres est une exception notable (où K&R autoriserait de ne pas utiliser d'accolades), nous autorisons à mettre la déclaration complète sur une seule ligne.
 
@@ -98,13 +98,13 @@ Get-ChildItem | Where-Object { $_.Length -gt 10mb }
 ```
 La raison principale pour laquelle nous faisons cette recommandation est pratique : aucune exception n'est nécessaire quand on suit cette règle, et quand le code est écrit en suivant ce style, de _nouvelles lignes_ de code peuvent être insérées entre deux lignes sans risquer de le casser accidentellement en séparant les accolades de leur bloc de déclaration. Ainsi, le code est plus facile à suivre, et cela rend les erreurs moins probables.
 
-Parce que choix était quelque peu sujet à controverse dans la communauté (environ 1/3 des voteurs s'y est opposé), il vaut la peine d'éto
-Because this choice was somewhat contentious in the community (about 1/3 of voters opposed), it's worth adding some addition reasoning here: First: in some historical consoles, it was necessary to write this way, so much of the early PowerShell code follows this style anyway. Second: PowerShell functions which accept scriptblocks (such as `ForEach-Object` and `Where-Object`) are common, and an _inherent_ part of the syntax of important PowerShell-based domain-specific languages such as DSC. Since it's **required** to place the opening brace on the end of the line in those cases, the only _consistent_ option is to follow OTBS.
+Parce que choix était quelque peu sujet à controverse dans la communauté (environ 1/3 des voteurs s'y est opposé), il vaut la peine d'étoffer notre raisonnement : 
+* Premièrement : dans certaines consoles historiques, il était nécessaire d'écrire de cette manière, donc beaucoup du code PowerShell des premières heures suit ce style.
+* Deuxièmement : Les fonctions PowerShell qui acceptent des blocs de script (telles que `ForEach-Object` et `Where-Object`) son nombreuses, et sont des parties _inhérentes_ des langages à domaines spécifiques basés sur PowerShell comme DSC. Puisqu'il est **requis** de mettre l'accolade ouvrante en fin de ligne dans ces cas de figure, la seule option _cohérente_ est de suivre l'OTBS.
 
-#### Always Start With CmdletBinding
+#### Commencez toujours par les CmdletBinding
 
-All of your scripts or functions should start life as something like this snippet:
-
+Tous vos scripts devraient commencer leur vie en ressemblant à cet extrait :
 ```powershell
 [CmdletBinding()]
 param()
@@ -114,7 +114,7 @@ end {
 }
 ```
 
-You can always delete or ignore one of the blocks (or add the `begin` block), add parameters and necessary validation and so on, but you should **avoid** writing scripts or functions without `[CmdletBinding()]`, and you should always at least _consider_ making it take pipeline input.
+Vous pouvez toujours effacer ou ignorer un des blocs (ou ajouter le bloc `begin`), ajouter des paramètres et validation nécessaire et ainsi de suite, mais vous devriez **éviter** d'écrire des scripts ou fonctions sans `[CmdletBinding()]`, et vous devriez toujours au moins _penser à_ lui faire accepter des entrées de pipelines.
 
 #### Prefer: param(), begin, process, end
 
