@@ -162,13 +162,12 @@ La longueur de ligne maximale de Github est actuellement entre 121 et 126 selon 
 
 Encore une fois, c'est une règle particulièrement flexible, et vous devriez toujours suivre les lignes directrices du projet quand vous contribuez aux projets d'autres personnes. Même si la plupart d'entre nous travaillent sur des écrans larges, tout le monde ne peut pas voir sans agrandir le texte ou sans utiliser de très grandes polices.
 
-Pour évitéer les lignes top longues, nous préférons utiliser le splatting (voir [about_Splatting](https://technet.microsoft.com/en-us/library/jj672955.aspx)) et les continuations de lignes implicites que PowerShell a dans les parenthèses, accoladse et crochets -- il faut **toujours** les utiliser 
-The preferred way to avoid long lines is to use splatting (see [Get-Help about_Splatting](https://technet.microsoft.com/en-us/library/jj672955.aspx)) and PowerShell's implied line continuation inside parentheses, brackets, and braces -- these should **always** be used in preference to the backtick for line continuation when applicable, even for strings:
+Pour évitér les lignes top longues, nous préférons utiliser le splatting (voir [about_Splatting](https://technet.microsoft.com/en-us/library/jj672955.aspx)) et les continuations de lignes implicites que PowerShell a dans les parenthèses, accoladse et crochets -- il faut **toujours** les utiliser plutôt qu'un accent grave pour continuer la ligne quand on en a la possibilité, même pour les strings :
 
 ```powershell
-Write-Host -Object ("This is an incredibly important, and extremely long message. " +
-                         "We cannot afford to leave any part of it out, " + 
-                         "nor do we want line-breaks in the output. " +
+Write-Host -Object ("Ceci est un message très important, et très long. " +
+                         "Nous ne pouvons pas nous permettre de nous passer d'une de ses parties, " + 
+                         "ni d'avoir des panor do we want line-breaks in the output. " +
                          "Using string concatenation lets us use short lines here, " +
                          "and still get a long line in the output")
 ```
