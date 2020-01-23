@@ -224,31 +224,31 @@ $yesterdaysDate = (Get-Date).AddDays(-$i)
 
 #### Espaces autour de caractères spéciaux
 
-White-space is (mostly) irrelevant to PowerShell, but its proper use is key to writing easily readable code.
+Les espaces vides sont (généralement) inutiles pour PowerShell, mais leur utilisation correct est la clé de l'écriture de code lisible.
 
-Use a single space after commas and semicolons, and around pairs of curly braces.
+Utilisez un seul espace après les virgules et points-virgules, et autour des paires d'accolades.
 
-Subexpressions `$( ... )` and scriptblocks `{ ... }` should have a single space on the _inside_ of the braces or parentheses to improve readability by making code blocks stand out -- and to further distinguish scriptblocks from variable delimiter braces `${...}`
+Les sous-expressions `$( ... )` et blocs de script `{ ... }` devraient contenir un seul espace à _l'intérieur_ des accolades ou des parenthèses pour améliorer leur lisibilité en mettant en évidence les blocs de code -- et pour mieux distinguer les blocs de script des accolades entourant des variables `${...}`.
 
-Avoid unnecessary spaces inside parenthesis or square braces.
+Evitez les espaces superflus dans les parenthèses ou les crochets.
 
 ```powershell
 $Var = 1
-"This is a string with one (${Var}) delimited variable."
+"Ceci est une chaîne de caractères contenant une (${Var}) variable délimitée."
 
-"There are $( (Get-ChildItem).Count ) files."
+"Il y a $( (Get-ChildItem).Count ) fichiers."
 ```
 
-Obviously, these rules should not be applied in such a way as to affect output.
+Bien évidemment, ces règles ne devraient pas être appliquées dans les cas où elles affecteraient la sortie.
 
-#### Avoid Using Semicolons (`;`) as Line Terminators
+#### Evitez d'utiliser des points-virgules (`;`) pour terminer la ligne
 
-PowerShell will not complain about extra semicolons, but they are unnecessary, and can get in the way when code is being edited or copy-pasted. They also result in extra do-nothing edits in source control when someone finally decides to delete them.
+PowerShell ne se plaindra pas d'un surplus de points-virgules, mais ils ne sont pas nécessaires, et peuvent déranger quand le code est modifié ou copié-collé. Ils ont aussi pour conséquence d'ajouter des modifications-qui-ne-font-rien quand quelqu'un se décide enfin à les supprimer.
 
-They are also unnecessary when declaring hashtables if you are already putting each element on its own line:
+Ils sont également inutiles dans les déclarations de hashtables si vous mettez déjà les éléments sur des lignes séparées :
 
 ```PowerShell
-# This is the preferred way to declare a hashtable if it extends past one line:
+# Ceci est la façon privilégiée de déclarer un.e hashtable qui s'étende sur plus d'une ligne :
 $Options = @{
     Margin   = 2
     Padding  = 2
