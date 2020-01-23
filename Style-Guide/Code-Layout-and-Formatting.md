@@ -166,62 +166,63 @@ Pour évitér les lignes top longues, nous préférons utiliser le splatting (vo
 
 ```powershell
 Write-Host -Object ("Ceci est un message très important, et très long. " +
-                         "Nous ne pouvons pas nous permettre de nous passer d'une de ses parties, " + 
-                         "ni d'avoir des panor do we want line-breaks in the output. " +
-                         "Using string concatenation lets us use short lines here, " +
-                         "and still get a long line in the output")
+                         "Nous ne pouvons pas nous permettre de nous passer " + 
+                         "d'une de ses parties, ni d'avoir des sauts de ligne " +
+                         "dans la sortie. Utiliser la concaténation de chaîne " +
+                         "nous permet d'avoir ici des lignes courtes, " +
+                         "tout en ayant une ligne longue dans la sortie.")
 ```
 
-#### Blank Lines and Whitespace
+#### Lignes vides et espacement
 
-Surround function and class definitions with _two_ blank lines.
+Entourez les définitions de classes et de fonctions avec _deux_ lignes vides.
 
-Method definitions within a class are surrounded by a single blank line.
+Les définitions de méthodes dans une classe sont entourées d'une seule ligne vide.
 
-Blank lines may be omitted between a bunch of related one-liners (e.g. empty functions)
+On peut omettre les lignes vides entre des déclarations connexes en une ligne (par exemple, des fonctions vides).
 
-Additional blank lines may be used sparingly to separate groups of related functions, or within functions to indicate logical sections (e.g. before a block comment).
+One peut utiliser des lignes vides additionnelles pour séparer des groupes de fonctions connexes, ou à l'intérieur de fonctions pour séparer des sections logiques (par exemple avant un bloc de commentaire).
 
-End each file with a single blank line.
+Finissez chaque fichier avec une seule ligne vide.
 
-#### Trailing spaces
+#### Espaces en fin de ligne
 
-Lines should not have trailing whitespace. Extra spaces result in future edits where the only change is a space being added or removed, making the analysis of the changes more difficult for no reason.
+Il ne devrait pas y avoir d'espace vide à la fin des lignes. Les espaces vides ont comme seul résultat d'ajouter des modifications au document où le seul changement est l'ajout ou la suppression d'un espace, rendant l'analyse des changements plus difficile sans raison valable.
 
-#### Spaces around parameters and operators
+#### Espaces autour des paramètres et opérateurs
 
-You should use a single space around parameter names and operators, including comparison operators and math and assignment operators, even when the spaces are not necessary for PowerShell to correctly parse the code.
+Vous devriez utiliser un seul espace autour des noms de paramètres et des opérateurs, comprenant les opérateurs mathématiques, de comparaison, et d'assignement, même quand les espaces ne sont pas nécessaire pour que PowerShell analyse correctement le code.
 
-One notable exception is when using colons to pass values to switch parameters:
+L'utilisation de deux-points pour passer des valeurs aux paramètres [[Switch]] est une exception notable à cette règle :
 
 ```PowerShell
-# Do not write:
-$variable=Get-Content $FilePath -Wai:($ReadCount-gt0) -First($ReadCount*5)
+# N'écrivez pas :
+$variable=Get-Content $FilePath -Wait:($ReadCount-gt0) -First($ReadCount*5)
 
-# Instead write:
+# Ecrivez plutôt :
 $variable = Get-Content -Path $FilePath -Wait:($ReadCount -gt 0) -TotalCount ($ReadCount * 5)
 ```
 
-Another exception is when using [Unary Operators](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_operators#unary-operators):
+L'utilisation d'[opérateurs unaires](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_operators#unary-operators) est une autre exception :
 
 ```PowerShell
-# Do not write:
+# N'écrivez pas :
 $yesterdaysDate = (Get-Date).AddDays( - 1)
 
 $i = 0
 $i ++
 
-# Instead write:
+# Ecrivez plutôt :
 $yesterdaysDate = (Get-Date).AddDays(-1)
 
 $i = 0
 $i++
 
-# Same principle should be applied when using a variable.
+# Ce principe s'applique aussi à l'utilisation de variables.
 $yesterdaysDate = (Get-Date).AddDays(-$i)
 ```
 
-#### Spaces around special characters
+#### Espaces autour de caractères spéciaux
 
 White-space is (mostly) irrelevant to PowerShell, but its proper use is key to writing easily readable code.
 
