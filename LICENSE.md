@@ -1,5 +1,7 @@
 Ce travail fut créé sous license [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/), merci de l'attribuer à Don Jones, Matt Penny, Carlos Perez, Joel Bennett et la Communauté Powershell.
 
+Respectant le matériau original, cette traduction suit aussi la licence [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/), merci de l'attribuer à Khémys Djouzi.
+
 ###### Vous êtes libre de :
 
 **Partager** — copier et redistribuer ce matériau via tout medium ou format
@@ -22,6 +24,8 @@ Copyright partiel (c) Carlos Perez, 2015
 Toute erreur que vous puissiez découvrir dans un de ces documents est là parce que Joel Bennett s'en est mêlé. Merci de soumettre ces [issues](https://github.com/PoshCode/PowerShellPracticeAndStyle/issues) et de nous aider à les corriger.
 
 Copyright partiel (c) Joel Bennett, 2015
+
+Traduction française (en cours) Khémys Djouzi, 2020
 
 
 #### NOTE
