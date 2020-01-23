@@ -136,7 +136,7 @@ function Test-Code {
 }
 ```
 
-Indenter plus de 4 espaces est acceptable pour les lignes de continuation (quand vous divisez une ligne qui était trop longue). Dans ces cas vous pourriez indenter de plus d'un niveau, ou même indenter d'un nombre d'espaces impair pour vous aligner avec un appel de méthode ou un bloc de paramètre sur la ligne précédente.
+Indenter de plus de 4 espaces est acceptable pour les lignes de continuation (quand vous divisez une ligne qui était trop longue). Dans ces cas vous pourriez indenter de plus d'un niveau, ou même indenter d'un nombre d'espaces impair pour vous aligner avec un appel de méthode ou un bloc de paramètre sur la ligne précédente.
 
 ```powershell
 function Test-Code {
@@ -156,13 +156,13 @@ Se tenir à des lignes peu larges permet au script d'être lu dans _une_ directi
 
 Nous utilisons dans ce guide deux sources en particulier pour la largeur de ligne maximale :
 
-La console PowerShell fait, par défaut, 120 caractères de large, mais n'autorise que 119 caractères sur les lignes de sortie, et à l'entrée d'un texte multilignes, Powershell utilise un 
-The PowerShell console is, by default, 120 characters wide, but it allows only 119 characters on output lines, and when entering multi-line text, PowerShell uses a line continuation prompt: `>>>` and thus limits your line length to 116 anyway.
+La console PowerShell fait, par défaut, 120 caractères de large, mais n'autorise que 119 caractères sur les lignes de sortie, et à l'entrée d'un texte multilignes, Powershell utilise une amorce de continuation de ligne : `>>>` ce qui limite de toute manière votre longueur de ligne à 116 caractères.
 
-Github's current maximum line width varies between 121 and 126 depending on your browser and OS (and thus, font). However, the 115 line length suggested by PowerShell would be enough to even allow side-by-side diffs to be displayed without scrolling or wrapping on the current "standard" 1080p monitor.
+La longueur de ligne maximale de Github est actuellement entre 121 et 126 selon votre navigateur et votre OS (et donc, votre police). Toutefois, la longueur de ligne de 115 que PowerShell suggère pourrait suffir à permettre d'afficher des comparaisons côte-à-côte sans défiler ou aller à la ligne sur un moniteur 1080p "standard".
 
-Again, this is a particularly flexible rule, and you should always follow the guidelines of projects when you're contributing to other people's projects.  Although most of us work on widescreen monitors, not everyone can see well without magnification or extremely large fonts.
+Encore une fois, c'est une règle particulièrement flexible, et vous devriez toujours suivre les lignes directrices du projet quand vous contribuez aux projets d'autres personnes. Même si la plupart d'entre nous travaillent sur des écrans larges, tout le monde ne peut pas voir sans agrandir le texte ou sans utiliser de très grandes polices.
 
+Pour évitéer les lignes top longues, nous préférons utiliser le splatting (voir [about_Splatting](https://technet.microsoft.com/en-us/library/jj672955.aspx)) et les continuations de lignes implicites que PowerShell a dans les parenthèses, accoladse et crochets -- il faut **toujours** les utiliser 
 The preferred way to avoid long lines is to use splatting (see [Get-Help about_Splatting](https://technet.microsoft.com/en-us/library/jj672955.aspx)) and PowerShell's implied line continuation inside parentheses, brackets, and braces -- these should **always** be used in preference to the backtick for line continuation when applicable, even for strings:
 
 ```powershell
