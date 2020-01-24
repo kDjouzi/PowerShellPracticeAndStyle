@@ -2,44 +2,44 @@
 
 Pour cette discussion, il est important de décider d'une terminologie commune. Bien que la terminologie que nous utilisons ici ne soit pas utilisée universellement, la communauté s'accorde sur le fait qu'il existe plusieurs types de "scripts" :
 
-1. Certains scripts contiennent des outils, ayant pour but d'être réutilisables. Ce sont typiquement des fonctions ou des fonctions avancées, et elles sont géneralement contenues dans un type de module de script ou de librairie de fonctions. Ces outils sont conçus pour avoir un haut réutilisabilité.
-2. Certains scripts sont des contrôleurs, c'est à dire qu'ils 
-2. Some scripts are controllers, meaning they are intended to utilize one or more tools (functions, commands, etc) to automate a specific business process. A script is not intended to be reusable; it is intended to make use of reuse by leveraging functions and other commands
+1. Certains scripts contiennent des outils, ayant pour but d'être réutilisables. Ce sont typiquement des fonctions ou des fonctions avancées, et elles sont géneralement contenues dans un type de module de script ou de librairie de fonctions. Ces outils sont conçus pour avoir une haute réutilisabilité.
+2. Certains scripts sont des contrôleurs, c'est à dire qu'ils sont faits pour utiliser un ou plusieurs outils (fonctions, commandes, etc) pour automatiser un processus spécifique. Un tel script n'est pas fait pour être réutilisable; il est fait pour utiliser la réutilisabilité en mettant en oeuvre des fonctions et autres commandes.
 
-For example, you might write a "New-CorpUser" script, which provisions new users. In it, you might call numerous commands and functions to create a user account, mailbox-enable them, provision a home folder, and so on. Those discrete tasks might also be used in other processes, so you build them as functions. The script is only intended to automate that one process, and so it doesn't need to exhibit reusability concepts. It's a standalone thing.
+Par exemple, vous pourriez écrire un script "Nouveau-UtilEntreprise", qui ajoute les nouveaux utilisateurs. Dedans, vous pourriez appeler de nombreuses commandes et fonctions pour créer un compte utilisateur, activer son adresse mail, lui fournir un dossier personnel, et ainsi de suite. Ces tâches uniques pourraient avoir une utilité dans d'autres processus, donc vous les construisez en tant que fonctions. Le script "Nouveau-UtilEntreprise" n'a pour but d'automatiser qu'un seul processus, et donc n'a pas besoin de comporter de concepts de réutilisabilité. C'est un élément autonome.
 
-Controllers, on the other hand, often produce output directly to the screen (when designed for interactive use), or may log to a file (when designed to run unattended).
-
-
-# TOOL-02 Make your code modular
-
-Generally, people tend to feel that most working code - that is, your code which does things - should be modularized into functions and ideally stored in script modules.
-
-That makes those functions more easily re-used. Those functions should exhibit a high level of reusability, such as accepting input only via parameters and producing output only as objects to the pipeline
+Les contrôleurs, d'un autre côté, produisent souvent des sorties directement à l'écran (quand ils sont créés pour être interactifs), ou peuvent déposer le journal (log) de leurs actions dans un fichier (s'ils sont créés pour fonctionner de façon automatisée).
 
 
-# TOOL-03 Make tools as re-usable as possible
+# OUTIL-02 Rendez votre code modulaire
 
-Tools should accept input from parameters and should (in most cases) produce any output to the pipeline; this approach helps maximize reusability.
+Généralement, les gens ont tendance à penser que la plupart du code fonctionnel - c'est à dire, votre code qui fait des choses - devrait être modularisé dans des fonctions et idéalement stocké dans des modules de script.
 
-# TOOL-04 Use PowerShell standard cmdlet naming 
+Cela rend ces fonctions plus simple à réutiliser. Ces fonctions devraient montrer un haut niveau de réutilisabilité, comme en n'acceptant des entrées qu'au travers de paramètres et en ne produisant des sorties qu'en tant qu'objets dans le pipeline.
 
-Use the verb-noun convention, and use the PowerShell standard verbs.
 
-You can get a list of the verbs by typing 'get-verb' at the command line.
+# OUTIL-03 Rendez vos outils aussi réutilisables que possible
 
-# TOOL-05 Use PowerShell standard parameter naming 
+Les outils devraient accepter des entrées à partir de paramètre et devraient (dans la plupart des cas) produire toute sortie dans le pipeline; cette approche aide à maximiser la réutilisabilité.
 
-Tools should be consistent with PowerShell native cmdlets in regards parameter naming.
+# OUTIL-04 Utilisez le standard PowerShell pour nommer vos cmdlets
 
-For example, use $ComputerName and $ServerInstance rather than something like $Param_Computer or $InstanceName
+Utilisez la convention verbe-nom, et utilisez les verbes standard de PowerShell.
 
-# TOOL-06 Tools should output raw data
+Vous pouvez obtenir une liste des verbes en tapant 'get-verb' dans l'invite de commande.
 
-The community generally agrees that tools should output raw data. That is, their output should be manipulated as little as possible. If a tool retrieves information represented in bytes, it should output bytes, rather than converting that value to another unit of measure. Having a tool output less-manipulated data helps the tool remain reusable in a larger number of situations.
+# OUTIL-05 Utilisez le standard Powershell pour nommer vos paramètres
 
-# TOOL-07 Controllers should typically output formatted data
+Les outils devraient être cohérents avec les cmdlets natifs de PowerShell au niveau du nommage des paramètres.
 
+Par exemple, utilisez $ComputerName et $ServerInstance plutôt que $Param_Computer et $InstanceName.
+
+# OUTIL-06 Les outils devraient renvoyer des données brutes
+
+La communauté s'accorde généralement sur le fait que les outils devraient renvoyer des données brutes. C'est à dire, que leurs sorties devraient être manipulées aussi peu que possible. Si un outil récupère une information représentée en bytes, il devrait renvoyer des bytes, plutôt que de convertir cette valeur dans une autre unité de mesure. Un outil renvoyant des données peu ou pas manipulées est réutilisable dans un plus grand nombre de situations.
+
+# OUTIL-07 Les contrôleurs devraient généralement renvoyer des données formatées
+
+Les contrôleurs, d'un autre côté, 
 Controllers, on the other hand, may reformat or manipulate data because controllers do not aim to be reusable; they instead aim to do as good a job as possible at a particular task.
 
 For example, a function named Get-DiskInfo would return disk sizing information in bytes, because that's the most-granular unit of measurement the operating system offers. A controller that was creating an inventory of free disk space might translate that into gigabytes, because that unit of measurement is the most convenient for the people who will view the inventory report.
