@@ -39,23 +39,22 @@ La communauté s'accorde généralement sur le fait que les outils devraient ren
 
 # OUTIL-07 Les contrôleurs devraient généralement renvoyer des données formatées
 
-Les contrôleurs, d'un autre côté, 
-Controllers, on the other hand, may reformat or manipulate data because controllers do not aim to be reusable; they instead aim to do as good a job as possible at a particular task.
+Les contrôleurs, d'un autre côté, peuvent reformater ou manipuler des données car ils n'ont pas pour but d'être réutilisables; leur objectif est d'être aussi bons que possibles à une chose en particulier.
 
-For example, a function named Get-DiskInfo would return disk sizing information in bytes, because that's the most-granular unit of measurement the operating system offers. A controller that was creating an inventory of free disk space might translate that into gigabytes, because that unit of measurement is the most convenient for the people who will view the inventory report.
+Par exemple, un fonction nommée Get-InfosDisque retournerait l'information qu'est la taille du disque en bytes, car c'est l'unité de mesure la plus fine que le système a à offrir. Un contrôleur qui créerait un inventaire de l'espace libre du disque pourrait traduire cette information en gigabytes, car c'est l'unité de mesure la plus pratique pour les gens qui verront le rapport de cet inventaire.
 
-An intermediate step is useful for tools that are packaged in script modules: views. By building a manifest for the module, you can have the module also include a custom .format.ps1xml view definition file. The view can specify manipulated data values, such as the default view used by PowerShell to display the output of Get-Process. The view does not manipulate the underlying data, leaving the raw data available for any purpose.
+Une étape intermédiaire est utile pour les outils contenus dans des modules de script : les vues. En construisant un manifeste pour le module, vous pouvez faire en sorte que le module inclue aussi un fichier de définition de vue .format.ps1xml personnalisé. La vue peut spécifier des valeurs de données manipulées, comme la vue par défaut utilisée par PowerShell pour afficher la sortie de Get-Process. La vue ne manipule pas les données sous-jacentes, laissant ainsi les données brutes intactes à toutes fins utiles.
 
 
-# WAST-01 Don't re-invent the wheel
+# GACHIS-01 Ne réinventez pas la roue
 
-There are a number of approaches in PowerShell that will "get the job done." In some cases, other community members may have already written the code to achieve your objectives. If that code meets your needs, then you might save yourself some time by leveraging it, instead of writing it yourself.
+Il existe de nombreuses approches pour "faire le taff" dans PowerShell. Dans certains cas, il est possible que d'autres membres de la communauté aient déjà écrit le code qui permet d'atteindre vos ubjectifs. Si ce code répond à vos besoins, alors vous pouriez gagner du temps en le mettant en oeuvre, plutôt que de l'écrire vous-même.
 
-For example:
+Par exemple :
 
 ```PowerShell
-function Ping-Computer ($computername) {
-    $ping = Get-WmiObject Win32_PingStatus -filter "Address='$computername'"
+function Ping-Ordinateur ($nomordinateur) {
+    $ping = Get-WmiObject Win32_PingStatus -filter "Address='$nomordinateur'"
     if ($ping.StatusCode -eq 0) {
         return $true
     } else {
@@ -64,25 +63,24 @@ function Ping-Computer ($computername) {
 }
 ```
 
-This function has a few opportunities for enhancement. First of all, the parameter block is declared as a basic function; using advanced functions is generally preferred. Secondly, the command verb ("Ping") isn't an approved PowerShell command verb. This will cause warnings if the function is exported as part of a PowerShell module, unless they are otherwise suppressed on import.
+Cette fonction a quelques axes d'amélioration. Premièrement, le bloc de paramètre est déclaré comme une fonction basique; on préférera généralement utiliser des fonctions avancées. Deuxièmement, le verbe de la commande ("Ping") n'est pas un verbe de commande PowerShell approuvé. Cela causera des avertissements si la fonction est exportée en tant que partie d'un module PowerShell, à moins que lesdits avertissements aient été désactivés à l'import.
 
-Thirdly, there's little reason to write this function in PowerShell v2 or later. PowerShell v2 has a built-in command that will allow you to perform a similar function. Simply use:
+Troisièmement, il y a peu d'intérêt à écrire cette fonction dans PowerShell v2 ou plus récent. PowerShell v2 intègre une commande qui permet d'accéder à une fonction similaire. Utilisez simplement :
 
 ```PowerShell
-Test-Connection $computername -Quiet
+Test-Connection $nomordinateur -Quiet
 ```
 
-This built-in command accomplishes the exact same task with less work on your part - e.g., you don't have to write your own function.
+Cette commande intégrée accomplit exactement la même tâche en vous demandant moins de travail - e.g. vous n'avez pas à écrire votre propre fonction.
 
-It has been argued by some that, "I didn't know such-and-such existed, so I wrote my own." That argument typically fails with the community, which tends to feel that ignorance is no excuse. Before making the effort to write some function or other unit of code, find out if the shell can already do that. Ask around. And, if you end up writing your own, be open to someone pointing out a built-in way to accomplish it.
+Certains arguent que, "je ne savais pas que telle ou telle chose existaient, donc je l'ai écrite moi-même." Cet argument échoue généralement avec la communauté, qui tend à penser que l'ignorance n'est pas une excuse. Avant de faire l'effort d'écrire une fonction ou toute autre unité de code, vérifiez si PowerShell le fait déjà nativement. Demandez autour de vous. Et, si vous finissez par écrire la vôtre, soyez ouverts si quelqu'un vous montre une façon native de le faire.
 
-On the flip side, it's important to note that writing your own code from the ground up can be useful if you are trying to learn a particular concept, or if you have specific needs that are not offered by another existing solution.
+En revanche, il est important de noter qu'écrire votre propre code à partir de zéro peut être utile si vous essayez d'apprendre un concept en particulier, ou si vous avez des besoins spécifiques qui ne sont pas comblés par une solution pré-existante.
 
 
-# WAST-02 Report bugs to Microsoft
+# GACHIS-02 Rapportez les bugs à Microsoft
 
-An exception: if you know that a built-in technique doesn't work properly (e.g., it is buggy or doesn't accomplish the exact task), then obviously it's fine to re-invent the wheel. However, in cases where you're doing so to avoid a bug or design flaw, then you should - as an upstanding member of the community - report the bug on [connect.microsoft.com](http://connect.microsoft.com/) also.
-
+Une exception : si vous savez qu'une technique native ne fonctionne pas bien (e.g., elle bugge ou n'accomplit pas sa tâche exacte), alors il est évidemment bon de réinventer la roue. Cependant, dans les cas où vous le faites pour éviter un bug ou une faille dans le design, alors vous devriez aussi - en tant qu'honnête membre de la communauté - rapporter ce bug.
 
 
 TODO: The "PURE" section is dubious at best. We need to discuss it.
