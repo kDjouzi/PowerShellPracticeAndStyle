@@ -1,4 +1,4 @@
-# PERF-01 If performance matters, test it
+# PERF-01 Si la performance est importante, testez-la
 
 PowerShell est équipé de 3.2 millions de bizarreries dans ses performances. Environ.
 
