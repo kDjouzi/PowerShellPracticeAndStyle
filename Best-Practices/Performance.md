@@ -1,19 +1,19 @@
 # PERF-01 If performance matters, test it
 
-PowerShell comes equipped with 3.2 million performance quirks. Approximately.
+PowerShell est équipé de 3.2 millions de bizarreries dans ses performances. Environ.
 
-For example, the first line below executes a lot faster than the second:
+Par exemple, la première ligne ci-dessous d'exécute beaucoup plus vite que la deuxième :
 
 ```PowerShell
 [void]Do-Something
 Do-Something | Out-Null
 ```
 
-If you're aware of multiple techniques to accomplish something, and you're writing a production script that will be dealing with large data sets (meaning performance will become a cumulative factor), then test the performance using Measure-Command or some other tool.
+Si vous connaissez plusieurs façons de faire quelque chose, et que vous écrivez un script de production qui gérera de larges ensembles de données (c'est-à-dire que la performance deviendra un facteur cumulatif), alors testez-en les performances avec Measure-Command ou tout autre outil.
 
-# PERF-02 Consider trade-offs between performance and readability
+# PERF-02 Pensez aux échanges entre performances et lisibilité
 
-Performance is not the only reason you write a script. If a script is expected to deal with ten pieces of data, a 30% performance improvement will not add up to a lot of actual time. It's okay to use a slower-performing technique that is easier to read, understand, and maintain - although "easier" is a very subjective term. Of the two commands above, any given person might select either of them as being "easier" to understand or read.
+La performance n'est pas la seule réison d'écrire un script. Si un script doit gérer 10 données simples, une amélioration de 30% des performances ne vous fera pas vraiment gagner de temps. Il est tout à fait acceptable d'utiliser une technique plus simple à lire, comprendre, et maintenir - quoique "plus simple" soit un terme très subjectif. Des deux commandes ci-dessus, une personne pourrait penser que l'une ou l'autre est "plus simple" à comprendre ou lire.
 
 This is an important area for people in the PowerShell community. While everyone agrees that aesthetics are important - they help make scripts more readable, more maintainable, and so on - performance can also be important. However, the advantages of a really tiny performance gain do not always outweigh the "soft" advantages of nice aesthetics.
 
