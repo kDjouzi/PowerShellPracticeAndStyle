@@ -83,6 +83,8 @@ En revanche, il est important de noter qu'écrire votre propre code à partir de
 Une exception : si vous savez qu'une technique native ne fonctionne pas bien (e.g., elle bugge ou n'accomplit pas sa tâche exacte), alors il est évidemment bon de réinventer la roue. Cependant, dans les cas où vous le faites pour éviter un bug ou une faille dans le design, alors vous devriez aussi - en tant qu'honnête membre de la communauté - rapporter ce bug.
 
 
+_NdT : La section suivante est décrite comme "douteuse, au mieux" par les auteur.e.s anglophones. Je lui donne donc une priorité basse, et la traduirai à la fin de ce projet._
+
 TODO: The "PURE" section is dubious at best. We need to discuss it.
 
 
