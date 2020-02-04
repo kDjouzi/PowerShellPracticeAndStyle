@@ -11,58 +11,59 @@ Do-Something | Out-Null
 
 Si vous connaissez plusieurs façons de faire quelque chose, et que vous écrivez un script de production qui gérera de larges ensembles de données (c'est-à-dire que la performance deviendra un facteur cumulatif), alors testez-en les performances avec Measure-Command ou tout autre outil.
 
-# PERF-02 Pensez aux échanges entre performances et lisibilité
+# PERF-02 Pensez aux compromis entre performances et lisibilité
 
 La performance n'est pas la seule réison d'écrire un script. Si un script doit gérer 10 données simples, une amélioration de 30% des performances ne vous fera pas vraiment gagner de temps. Il est tout à fait acceptable d'utiliser une technique plus simple à lire, comprendre, et maintenir - quoique "plus simple" soit un terme très subjectif. Des deux commandes ci-dessus, une personne pourrait penser que l'une ou l'autre est "plus simple" à comprendre ou lire.
 
-This is an important area for people in the PowerShell community. While everyone agrees that aesthetics are important - they help make scripts more readable, more maintainable, and so on - performance can also be important. However, the advantages of a really tiny performance gain do not always outweigh the "soft" advantages of nice aesthetics.
+C'est un domaine important pour les membres de la communauté PowerShell. Bien que tout le monde s'accorde sur l'importance de l'esthétique - elle aide à rendre les scripts plus lisibles, maintenable, et ainsi de suite - la performance a aussi son importance. Toutefois, les avantages d'un petit gain en performance ne pèsent pas toujours aussi lourd sur la balance que les avantages "doux" d'une qualité esthétique.
 
-For example:
+Par exemple :
 
 ```PowerShell
-$content = Get-Content file.txt
+$contenu = Get-Content fichier.txt
 
-ForEach ($line in $content) {
-  Do-Something -input $line
+ForEach ($ligne in $contenu) {
+  Do-Something -input $ligne
 }
 ```
 
-Most folks will agree that the basic aesthetics of that example are good. This snippet uses a native PowerShell approach, is easy to follow, and because it uses a structural programming approach, is easy to expand (say, if you needed to execute several commands again each line of content). However, this approach could offer extremely poor performance. If file.txt was a few hundred kilobytes, no problem; if it was several hundred megabytes, potential problem. Get-Content is forced to read the entire file into memory at once, storing it in memory (in the $content variable).
+La plupart des gens approuveront la bonne qualité de base de l'esthétique de cet exemple. Cet extrait utilise une approche PowerShell native, est facile à suivre, et parce qu'il utilise une approche de programmation structurelle, il est facile à étendre (disons, si vous avez besoin d'exécuter plusieurs autre commandes à chaque ligne de contenu). Toutefois, cette approche offre des performances extrêmement basses. Si fichier.txt fait quelques centaines de kilo-octets, pas de problème; s'il fait quelques centaines de méga-octets, problème potentiel. Get-Content est obligé de lire le fichier entier en mémoire d'un seul coup, en le stockant dans ladite mémoire (dans la variable $contenu).
 
-Now consider this alternate approach:
+Envisagez maintenant cette approche alternative :
 
 ```PowerShell
-Get-Content file.txt |
+Get-Content fichier.txt |
 ForEach-Object -Process {
   Do-Something -input $\_
 }
 ```
 
-As described elsewhere in this guide, many folks in the community would dislike this approach for aesthetic reasons. However, this approach has the advantage of utilizing PowerShell's pipeline to "stream" the content in file.txt. Provided that the fictional "Do-Something" command isn't blocking the pipeline (a la Sort-Object), the shell can send lines of content (String objects, technically) through the pipeline in a continuous stream, rather than having to buffer them all into memory.
+Comme décrit autre part dans ce guide, beaucoup de membres de la communauté n'aimeraient pas cette approche pour des raisons esthétiques. Cependant, cette approche a l'avantage d'utiliser le pipeline de PowerShell pour "streamer" le contenu de fichier.txt. En partant du principe que la commande imaginaire "Do-Something" le bloque pas le pipeline (à la Sort-Object), le shell peut envoyer des lignes de contenu (techniquement, des objets String) au travers du pipeline en un flot continu, plutôt que d'avoir à tous les stocker dans la mémoire tampon.
 
-Some would argue that this second approach is always a poor one, and that if performance is an issue then you should devolve from a PowerShell-native approach into a lower-level .NET Framework approach:
+Certains argueraient que cette seconde approche est toujours mauvaise, et que si la performance est un souci vous devriez retomber d'une approche native PowerShell à une approche .NET Framework plus bas-niveau :
 
 ```PowerShell
-$sr = New-Object -Type System.IO.StreamReader -Arg file.txt
+$sr = New-Object -Type System.IO.StreamReader -Arg fichier.txt
 
 while ($sr.Peek() -ge 0) {
-   $line = $sr.ReadLine()
-   Do-Something -input $line
+   $ligne = $sr.ReadLine()
+   Do-Something -input $ligne
 }
 ```
 
-There are myriad variations to this approach, of course, but it solves the performance problem by reading one line at a time, instead of buffering the entire file into memory. It maintains the structured programming approach of the first example, at the expense of using a potentially harder-to-follow .NET Framework model instead of native PowerShell commands. Many regard this third example as an intermediate step, and suggest that a truly beneficial approach would be to write PowerShell commands as "wrappers" around the .NET code. For example (noting that this fourth example uses fictional commands by way of illustration):
+Il y a des myriades de variations de cette approche, évidemment, mais elles règlent le problème en lisant une ligne à la fois, plutôt que de charger le fichier entier en mémoire. Cela maintient l'approche "programmation structurelle" du premier exemple, au coût de l'utilisation d'un modèle .NET Framework potentiellement plus dur à suivre que des commandes natives PowerShell. Beaucoup considèrent ce troisième exemple comme une étape intermédiaire, et suggèrent qu'une vraie approche nénéfique serait d'écrire des commandes PowerShell en tant qu'"emballage" autour du code .NET. Par exemple (en notant que ce quatrième exemple utilise des commandes imaginaire comme illustration) :
+
 
 ```PowerShell
-$handle = Open-TextFile file.txt
+$gestion = Open-TextFile file.txt
 
-while (-not Test-TextFile -handle $handle) {
+while (-not Test-TextFile -handle $gestion) {
     Do-Something -input (Read-TextFile -handle $handle)
 }
 ```
 
-This example reverts back to a native PowerShell approach, using commands and parameters. The proposed commands (Open-TextFile, Test-TextFile, and Read-TextFile) are just wrappers around .NET Framework classes, such as the StreamReader class shown in the third example.
+Cet exemple repart sur une approche native PowerShell, en uilisant des commandes et des paramètres. Les commandes proposées (Open-TextFile, Test-TextFile, et Read-TextFile) sont simplement des "emballages" autour de classes .NET Framework, telles que la classe StreamReader montrée dans le troisième exemple.
 
-You will generally find that it is possible to conform with the community's general aesthetic preferences while still maintaining a good level of performance. Doing so may require more work - such as writing PowerShell wrapper commands around underlying .NET Framework classes. Most would argue that, for a tool that is intended for long-term use, the additional work is a worthwhile investment.
+Vous vous rendrez généralement compte qu'il est possible de se conformer aux préférences esthéétiques généralement partagées par la communauté tout en maintenant un bon niveau de performance. Le faire peut demander plus de travail - comme par exemple écrire des des commandes d'"emballage" PowerShell autour de classes .NET Framework sous-jacentes. Beaucoup argueraient que, pour un outil que vous comptez utiliser sur un long terme, le travail additionnel est un investissement plus que raisonnable.
 
-The moral here is that both aesthetic and performance are important considerations, and without some work context, neither is inherently more important than the other. It is often possible, with the right technique, to satisfy both. As a general practice, you should avoid giving up on aesthetics solely because of performance concerns - when possible, make the effort to satisfy both performance and aesthetics.
+La morale est ici que l'esthétique et la performance sont des considérations importantes, et sans contexte de travail, aucune n'est plus importante que l'autre. Il est souvent possible, avec la bonne technique, d'obtenir les deux. De façon générale, vous devriez éviter d'abandonner l'esthétique pour des questions de performance - tant que possible, faites l'effort de satisfaire vos besoins en matière de performance autant qu'en matière d'esthétique.
