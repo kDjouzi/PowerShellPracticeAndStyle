@@ -1,10 +1,10 @@
-### Security
+### Sécurité
 
-#### Always use PSCredential for credentials/passwords
+#### Utilisez toujours PSCredential pour les identifiants/mots de passe
 
-You must avoid storing the password in a plain string object, or allowing the user to type them in as a parameter (where it might end up in the history or exposed to screen-scraper malware). The best method for this is to always deal with PSCredential objects (which store the Password in a SecureString).
+Vous devez éviter de stocker le mot de passe dans un objet string ordinaire, ou d'autoriser l'utilisateur à les taper directement en tant que paramètres (où ils pourraient finir dans l'historique ou être exposés à des malwares "gratteurs d'écran"). La meilleure méthode est de toujours utiliser des objets PSCredential (qui stockent le mot de passe dans un objet SecureString).
 
-More specifically, you should always take PSCredentials as a parameter (and never call Get-Credential within your function) to allow the user the opportunity to reuse credentials stored in a variable.
+Plus spécifiquement, vous devriez toujours prendre le PSCredential en tant que paramètre (et ne jamais appeler Get-Credential dans votre fonction) pour permettre à l'utilisateur de réutiliser des identifiants stockés dans une variable.
 
 Furthermore, you should use the Credential attribute as the built-in commands do, so if the user passes their user name (instead of a PSCredential object), they will be prompted for their password in a Windows secure dialog.
 
