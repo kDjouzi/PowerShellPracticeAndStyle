@@ -58,7 +58,7 @@ Il y a des myriades de variations de cette approche, évidemment, mais elles rè
 $gestion = Open-TextFile file.txt
 
 while (-not Test-TextFile -handle $gestion) {
-    Do-Something -input (Read-TextFile -handle $handle)
+    Do-Something -input (Read-TextFile -handle $gestion)
 }
 ```
 
