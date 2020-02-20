@@ -1,24 +1,24 @@
-### Documenting and Comments
+### Documentation et commentaires
 
-Comments that contradict the code are worse than no comments. Always make a priority of keeping the comments up-to-date when the code changes!
+Les commentaires qui contredisent le code sont pires que l'absence de commentaires. Faites de la mise à jour de vos commentaires à chaque changement du code une priorité !
 
-Comments should be in English, and should be complete sentences. If the comment is short, the period at the end can be omitted.
+Les commentaires devraient être en anglais, et devraient être des phrases complètes. Si le commentaire est court, le point à la fin peut être omis.
 
-Remember that comments should serve to your reasoning and decision-making, not attempt to explain what a command does. With the exception of regular expressions, well-written PowerShell can be pretty self-explanatory.
+Rappelez-vous que les commentaires devraient servir votre raisonnement et votre prise de décision, pas tenter d'expliquer ce qu'une commande fait. A l'exception des expressions régulières, le PowerShell bien écrit a le potentiel de s'expliquer lui-même.
 
 ```PowerShell
-# Do not write:
-# Increment Margin by 2
-$Margin = $Margin + 2
+# N'écrivez pas :
+# Incrémenter Marge de 2
+$Marge = $Marge + 2
 
-# Maybe write:
-# The rendering box obscures a couple of pixels.
-$Margin = $Margin + 2
+# Ecrivez peut-être :
+# La boîte de rendu cache quelques pixels.
+$Marge = $Marge + 2
 ```
 
-#### Block comments
+#### Blocs de commentaires
 
-Don't go overboard with comments. Unless your code is particularly obscure, don't precede each line with a comment -- doing so breaks up the code and makes it harder to read.  Instead, write a single block comment.
+N'en faites pas trop avec les commentaires. A moins que votre code ne soit particulièrement obscur, ne précédez pas chaque ligne d'un commentaire -- cela "casse" le code et le rend plus diffifila à lire. A la place, écrivez un seul commantaire fr bloc.
 
 Block comments generally apply to some or all of the code which follows them, and are indented to the same level as that code. Each line should start with a # and a single space.
 
