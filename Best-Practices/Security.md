@@ -6,7 +6,7 @@ Vous devez éviter de stocker le mot de passe dans un objet string ordinaire, ou
 
 Plus spécifiquement, vous devriez toujours prendre le PSCredential en tant que paramètre (et ne jamais appeler Get-Credential dans votre fonction) pour permettre à l'utilisateur de réutiliser des identifiants stockés dans une variable.
 
-Furthermore, you should use the Credential attribute as the built-in commands do, so if the user passes their user name (instead of a PSCredential object), they will be prompted for their password in a Windows secure dialog.
+En outre, vous devriez utiliser l'attribut Credential comme les commandes natives le font, de façon à ce que si l'utilisateurice passe son identifiant (plutôt qu'un objet PSCredential), iel soit invité.e à entrer son mot de passe dans une boîte de dialogue sécurisée Windows.
 
 ```PowerShell
 param (
@@ -16,22 +16,22 @@ param (
 )
 ```
 
-If you absolutely must pass a password in a plain string to a .Net API call or a third party library it is better to decrypt the credential as it is being passed instead of saving it in a variable.
+Si vous devez absolument passer un mot de passe d'une chaîne simple à un appel API .Net ou une librairie tierce il vaut mieux décrypter les identifiants lors de leur passage plutôt que de les stocker dans une variable.
 
 ```PowerShell
-    # Get the cleartext password for a method call:
+    # Obtenir le mot de passe en clair pour un appel de méthode :
     $Insecure.SetPassword( $Credentials.GetNetworkCredential().Password )
 ```
 
-#### Other Secure Strings
+#### Autres chaînes sécurisées
 
 
-For other strings that may be sensitive, use the SecureString type to protect the value of the string. Be sure to always provide an example for the user of passing the value using `Read-Host -AsSecureString`.
+Pour les autres chaînes qui pourraient être sensibles, utilisez le type SecureString pour protéger la valeur de la chaîne. Assurez-vous de toujours fournir un exemple à l'utilisateur passant la valeur en utilisant `Read-Host -AsSecureString`.
 
-Note, if you ever need to turn a SecureString into a string, you can use this method, but make sure to call ZeroFreeBSTR to avoid a memory leak:
+Notez que, si vous avez un jour besoin de convertir une SecureString en string, vous pouvez utiliser cette méthose, mais assurez-vous d'appeler ZeroFreeBSTR afin d'éviter une fuite de mémoire :
 
 ```PowerShell
-    # Decrypt a secure string.
+    # Décryptage d'une chaîne sécurisée.
     $BSTR = [System.Runtime.InteropServices.marshal]::SecureStringToBSTR($this);
     $plaintext = [System.Runtime.InteropServices.marshal]::PtrToStringAuto($BSTR);
     [System.Runtime.InteropServices.Marshal]::ZeroFreeBSTR($BSTR);
