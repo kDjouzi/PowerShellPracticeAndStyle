@@ -38,29 +38,26 @@ Notez que, si vous avez un jour besoin de convertir une SecureString en string, 
     return $plaintext
 ```
 
-* For credentials that need to be saved to disk, serialize the credential object using
-Export-CliXml to protect the password value. The password will be protected as a secure
-string and will only be accessible to the user who generated the file on the same 
-computer where it was generated.
+* Pour les identifiants qui doivent être enregistrés sur le disque, sérialisez l'objet en utilisant Export-CliXml pour protéger la valeur du mot de passe. Le mot de passe sera protégé car contenu dans un objet SecureString et sera uniquement accessible à l'utilisateur ayant généré le fichier, et seulement sur l'ordinateur où ce fichier a été généré.
 
 ```PowerShell
-    # Save a credential to disk
+    # Enregistrer l'objet Credential sur le disque
     Get-Credential | Export-CliXml -Path c:\creds\credential.xml
 
-    # Import the previously saved credential
+    # Importer l'objet Credential précédemment enregistré
     $Credential = Import-CliXml -Path c:\creds\credential.xml
 ```
 
-* For strings that may be sensitive and need to be saved to disk, use ConvertFrom-SecureString to encrypt it into a standard string that can be saved to disk. You can then use ConvertTo-SecureString to convert the encrypted standard string back into a SecureString. NOTE: These commands use the Windows Data Protection API (DPAPI) to encrypt the data, so the encrypted strings can only be decrypted by the same user on the same machine, but there is an option to use AES with a shared key.
+* Pour les chaînes qui peuvent être sensibles et doivent être enregistrées sur le disque, utilisez ConvertFrom-SecureString afin d'en garder une version cryptée dans une chaîne qui peut être enregistrée sur le disque. Vous pouvez utiliser ConvertTo-SecureString pour convertir la string standard en SecureString. NOTE : ces commandes utilisent l'API de Protection Windows (DPAPI) pour crypter les données, donc les strings cryptées ne peuvent être décryptées que par le même utilisateursur la même machine, mais il y a l'option d'utiliser AES avec une clef partagée.
 
 ```PowerShell
-    # Prompt for a Secure String (in automation, just accept it as a parameter)
+    # Invitez l'utilisateur à entrer une SecureString (en automation, acceptez-la en paramètre)
     $Secure = Read-Host -Prompt "Enter the Secure String" -AsSecureString
 
-    # Encrypt to Standard String and store on disk
+    # Cryptage dans une string standard et stockage sur le disque
     ConvertFrom-SecureString -SecureString $Secure | Out-File -Path "${Env:AppData}\Sec.bin"
 
-    # Read the Standard String from disk and convert to a SecureString
+    # Lecture de la string standard à partir du disque et conversion en SecureString
     $Secure = Get-Content -Path "${Env:AppData}\Sec.bin" | ConvertTo-SecureString
 ```
 
