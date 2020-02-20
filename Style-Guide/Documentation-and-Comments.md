@@ -18,8 +18,9 @@ $Marge = $Marge + 2
 
 #### Blocs de commentaires
 
-N'en faites pas trop avec les commentaires. A moins que votre code ne soit particulièrement obscur, ne précédez pas chaque ligne d'un commentaire -- cela "casse" le code et le rend plus diffifila à lire. A la place, écrivez un seul commantaire fr bloc.
+N'en faites pas trop avec les commentaires. A moins que votre code ne soit particulièrement obscur, ne précédez pas chaque ligne d'un commentaire -- cela "casse" le code et le rend plus diffifila à lire. A la place, écrivez un seul bloc de commentaires.
 
+Les blocs de commentaires s'applique généralement 
 Block comments generally apply to some or all of the code which follows them, and are indented to the same level as that code. Each line should start with a # and a single space.
 
 If the block is particularly long (as in the case of documentation text) it is recommended to use the `<# ... #>` block comment syntax, but you should place the comment characters on their own lines, and indent the comment:
