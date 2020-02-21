@@ -1,21 +1,18 @@
-### Functions
+### Fonctions
 
-Avoid using the `return` keyword in your functions. Just place the object variable on its own.
+Evitez d'utiliser le mot-clé `return` dans vos fonctions. Placez juste la variable d'objet quelque part toute seule.
 
-When declaring simple functions leave a space between the function name and the parameters.
+Quand vous déclarez des fonctions simple, laissez un espace entre le nom de la fonction et les paramètres.
 
 ```PowerShell
-function MyFunction ($param1, $param2) {
+function MaFonction ($param1, $param2) {
     ...  
 }
 ```
 
-### Advanced Functions
+### Fonctions avancées
 
-For Advanced Functions and scripts use the format of **\<verb\>-\<noun\>** for
-  naming. For a list of approved verbs the cmdlet `Get-Verb` will list
-  them. On the noun side it can be composed of more than one joined word
-  using Pascal Case and only singular nouns.
+Nommez les fonctions avancées et les scripts en utilisant le format **\<verbe\>-\<nom\>**. Vous pouvez obtenir la liste des verbes approuvés avec le cmdlet `Get-Verb`. Le côté "nom" peut être composé d'un ou plusieurs noms utilisant la PascalCase, et étant toujours accordés au singulier.
 
 In Advanced Functions do not use the keyword `return` to return an object.
 
