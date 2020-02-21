@@ -80,97 +80,99 @@ Chaque commande de fonction de script devrait avoir un court texte décrivant sa
 ##### Documentez chaque paramètre
 
 Chaque paramètre devrait être documenté. Pour simplifier la synchronisation des commentaires aux changements fait aux paramètre, l'emplacement privilégié des commentaires de documentation des paramètres est _l'intérieur_ du bloc `param`n directement au-dessus de chaque paramètre.
-Examples can be found in the ISE snippets:
+Nous pouvons trouver des exemples dans ces extraits de code ISE :
 
 ```PowerShell
 param(
-    # Param1 help description
+    # Description et aide de $Param1
     [Parameter(Mandatory = $true,
                 ValueFromPipelineByPropertyName = $true,
                 Position = 0)]
     $Param1,
 
-    # Param2 help description
+    # Description et aide de $Param2
     [int]
     $Param2
 )
 ```
 
-It is also possible to write `.PARAMETER` statements with the rest of the documentation comments, but experience shows they are more likely to be kept up-to-date if you put them closer to the code they document.
+Il est aussi possible de placer les déclarations `.PARAMETER` avec le reste des commentaires de documentation, mais l'expérience montre que les commentaires plus proches du code qu'ils documentent tendent à être mis à jour plus assidûment.
 
-##### Provide Usage Examples
+##### Fournissez des exemples d'utilisation
 
-Your help should always provide an example for each major use case. A 'usage example' is just an example of what you would type in to Powershell to run the script - you can even cut and paste one from the command line while you're testing your function.
+Votre aide devrait toujours fournir un exemple pour chaque cas d'utilisation majeur. Un "exemple d'utilisation" est juste un exemple de ce que vous taperiez dans PowerShell pour faire fonctionner le script - vous pouvez même copier et coller un exemple à partir de l'invite de commande lors de tests de votre fonction.
 
 ```PowerShell
 function Test-Help {
     <#
         .SYNOPSIS
-            An example function to display how help should be written.
-
+            Une fonction d'exemple pour montrer comment l'aide devrait
+            être écrite.
+            
         .EXAMPLE
             Get-Help -Name Test-Help
-
-            This shows the help for the example function.
+            
+            Affiche l'aide pour la fonction d'exemple.
     #>
     [CmdletBinding()]
     param(
-        # This parameter doesn't do anything.
-        # Aliases: MP
+        # Ce paramètre ne fait rien.
+        # Alias: MP
         [Parameter(Mandatory = $true)]
         [Alias("MP")]
         [String]$MandatoryParameter
     )
 
-    <# code here ... #>
+    <# ici : du code ... #>
 }
 ```
 
-### DOC-01 Write comment-based help
+### DOC-01 Ecrivez de l'aide à basée sur les commentaires
 
-You should always write comment-based help in your scripts and functions.
+Vous devriez toujours écrire de l'aide basée sur les commentaires dans vos scripts et fonctions.
 
-Comment-based help is formatted as follows:
+L'aide basée sur les commentaires est formatée comme suit :
 
 ```PowerShell
 function Get-Example {
     <#
     .SYNOPSIS
-        A brief description of the function or script.
+        Une brève description de votre fonction ou script.
 
     .DESCRIPTION
-        A longer description.
+        Une description plus longue.
 
-    .PARAMETER FirstParameter
-        Description of each of the parameters.
+    .PARAMETER PremierParametre
+        Description de chaque paramètre.
         Note:
-        To make it easier to keep the comments synchronized with changes to the parameters,
-        the preferred location for parameter documentation comments is not here,
-        but within the param block, directly above each parameter.
+        Pour faciliter une mise à jour des commentaires synchronisée avec les changements
+        faits aux paramètres, la localisation favorisée des commentaires de documentation 
+        des paramètres n'est pas ici, mais dans le bloc param, directement au-dessus de
+        chaque paramètre.
 
-    .PARAMETER SecondParameter
-        Description of each of the parameters.
+    .PARAMETER SecondParametre
+        Description de chaque paramètre.
 
     .INPUTS
-        Description of objects that can be piped to the script.
+        Description des objets qui peuvent être "tuyautés" (insérés) dans le script.
 
     .OUTPUTS
-        Description of objects that are output by the script.
+        Description des objets qui sont renvoyés par le script.
 
     .EXAMPLE
-        Example of how to run the script.
+        Example expliquant comment faire fonctionner le script.
 
     .LINK
-        Links to further documentation.
+        Lien vers une documentation plus détaillée.
 
     .NOTES
-        Detail on what the script does, if this is needed.
+        Détails concernant les fonctionnalités du script, s'ils sont nécessaires.
 
     #>
 ```
 
-Comment-based help is displayed when the user types `help Get-Example` or `Get-Example -?`, etc.
+L'aide basée sur les commentaires est ce qui est affiché quand l'utilisateur tape `help Get-Example` ou `Get-Example -?`, etc.
 
-Your help should be helpful. That is, if you've written a tool called `Get-LOBAppUser`, don't write help that merely says, "Gets LOB App Users." Duh.
+Votre aide devrait aider. C'est à dire, que si vous avez écrit un outil appelé `Get-UtilisateursAppLOB`, n'écrivez pas d'aide qui dise juste "Obtient les utilisateurs de l'application LOB". Eh ouais.
 
-**Further information:** You can get more on the use of comment-based help by typing `help about_Comment_Based_Help` within Powershell.
+**Plus d'informations :** Vous pouvez en savoir plus sur l'aide basée sur les commentaires en tapant `help about_Comment_Based_Help` dans PowerShell.
