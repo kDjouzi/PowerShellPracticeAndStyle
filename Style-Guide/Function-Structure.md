@@ -14,14 +14,12 @@ function MaFonction ($param1, $param2) {
 
 Nommez les fonctions avancées et les scripts en utilisant le format **\<verbe\>-\<nom\>**. Vous pouvez obtenir la liste des verbes approuvés avec le cmdlet `Get-Verb`. Le côté "nom" peut être composé d'un ou plusieurs noms utilisant la PascalCase, et étant toujours accordés au singulier.
 
-Dans des foncitons avancées, n'utilisez pas le mot-clef `return` pouro renvoyer un objet.
-In Advanced Functions do not use the keyword `return` to return an object.
+Dans des foncitons avancées, n'utilisez pas le mot-clef `return` pour renvoyer un objet.
 
-In Advanced Functions you return objects inside the `Process {}` block
-   and not in `Begin {}` or `End {}` since it defeats the advantage of the pipeline.
+Dans les focntions avancées, vous retournez les objets dans le bloc `Process {}` et pas dans `Begin {}` ou `End {}` puisque cela vous empêcherait de profiter des avantages du pipeline.
 
 ```PowerShell
-# Bad
+# Pas bien
 function Get-USCitizenCapability {
     [CmdletBinding()]
     [OutputType([psobject])]
@@ -48,7 +46,7 @@ function Get-USCitizenCapability {
     end { return $Obj }
 }
   
-# Good
+# Bien
 function Get-USCitizenCapability {
     [CmdletBinding()]
     [OutputType([psobject])]
@@ -76,11 +74,11 @@ function Get-USCitizenCapability {
 }
 ```
 
-#### Always use CmdletBinding attribute.
+#### Utilisez toujours l'attribut CmdletBinding.
 
-#### Always have at least a `process {}` code block if any parameters takes values from the Pipeline.
+#### Ayez toujours au moins un bloc de code `process {}` si au moins un de vos paramètres prend des valeurs du pipeline.
 
-#### Specify an OutputType attribute if the advanced function returns an object or collection of objects.
+#### Spécifiez un attribut OutputTypesi la fonction avancée revoie un objet ou une collection d'objets.
 
 If the function returns different object types depending on the parameter set provide one per parameter set.
 
