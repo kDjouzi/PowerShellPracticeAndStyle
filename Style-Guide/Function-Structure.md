@@ -14,6 +14,7 @@ function MaFonction ($param1, $param2) {
 
 Nommez les fonctions avancées et les scripts en utilisant le format **\<verbe\>-\<nom\>**. Vous pouvez obtenir la liste des verbes approuvés avec le cmdlet `Get-Verb`. Le côté "nom" peut être composé d'un ou plusieurs noms utilisant la PascalCase, et étant toujours accordés au singulier.
 
+Dans des foncitons avancées, n'utilisez pas le mot-clef `return` pouro renvoyer un objet.
 In Advanced Functions do not use the keyword `return` to return an object.
 
 In Advanced Functions you return objects inside the `Process {}` block
