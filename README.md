@@ -1,4 +1,4 @@
-## Guide des Bonnes Pratiques et du Style dans PowerShell
+## Guide des Bonnes Pratiques et du Style PowerShell
 
 [Table Of Contents](#table-of-contents)
 
