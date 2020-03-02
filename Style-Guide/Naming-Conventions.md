@@ -1,9 +1,10 @@
-### Naming Conventions
+### Conventions de nommage
 
-In general, prefer the use of full explicit names for commands and parameters rather than aliases or short forms. There are tools [Expand-Alias](https://github.com/PoshCode/ModuleBuilder/blob/master/ResolveAlias.psm1) for fixing many, but not all of these issues.
+En général, préférez l'utilisation de noms complets et explicites pour les commandes et paramètres plutôt que des alias ou formes courtes. Des outils existent [Expand-Alias](https://github.com/PoshCode/ModuleBuilder/blob/master/ResolveAlias.psm1) pour réparer beaucoup de ces problèmes, mais pas tous.
 
-#### Use the full name of each command.
+#### Utilisez le nom complet de chaque commande.
 
+Chaque scripteur PowerShell apprend les noms réels des commandes, mais différentes personnes apprennent différents aliases (e.g. : ls pour les utilisatueurs Linux, dir ppour les utilisateurs DOS, gci...).
 Every PowerShell scripter learns the actual command names, but different people learn and use different aliases (e.g.: ls for Linux users, dir for DOS users, gci ...).  In your shared scripts you should use the more universally known full command name. As a bonus, sites like GitHub will highlight commands properly when you use the full Verb-Noun name:
 
 ```PowerShell
