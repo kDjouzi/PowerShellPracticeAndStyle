@@ -44,15 +44,14 @@ vous devriez évitez de mélanger différents types d'objets dans la sortie d'un
 
 Pour le bien des outils et de la recherche de commandes, vous devriez indiquer le.s type.s de sortie de vos scripts, fonctions ou Cmdlets avec `[OutputType()]` (voir la [documentation officielle d'outputType](https://docs.microsoft.com/fr-fr/powershell/module/microsoft.powershell.core/about/about_functions_outputtypeattribute) pour plus d'informations).
 
-Quand vous combinez les sorties de plusieurs types d'objets, ils devraient généralement être
-When you combine the output of multiple types objects, they should generally be derived from a common basetype (like FileInfo and DirectoryInfo come from System.IO.FileSystemInfo), or should have format or type files which cause them to output the same columns. In particular, you must avoid outputting strings interspersed in your output.
+Quand vous combinez les sorties de plusieurs types d'objets, ils devraient généralement être dérivés d'un même type de base (de la même façon que FileInfo et DirectoryInfo viennent de System.IO.FileSystemInfo), ou devraient avoir des fichiers de type ou de format qui leur font sortir les même colonnes. Vous devez, en particulier, éviter d'entrecouper votre sortie de chaînes de caractères.
 
-### Two important exceptions to the single-type rule
+### Deux exceptions importantes à la règle du type unique
 
-**For internal functions** it's ok to return multiple different types because they won't be "output" to the user/host, and can offer significant savings (e.g. one database call with three table joins, instead of three database calls with two or three joins each).  You can then call these functions and assign the output to multiple variables, like so:
+**Pour les fonctions internes** il est acceptable de renvoyer plusieurs types différents car ceux-ci ne seront pas "sortis" vers l'utilisateur.ice / hôte, et peuvent offrir des économies significatives (e.g. un appel de base de données avec trois jointures de tables, au lieu de trois appels avec deux ou trois jointures chacun). Vous pouvez ainsi appeler ces fonctions et assigner leur sortie à plusieurs variables, comme ceci :
 
 ```PowerShell
 $user, $group, $org = Get-UserGroupOrg
 ```
 
-**When you call Out-Default.** If you must return multiple object types from an external command, you should name your function in such a way that it's obvious to users that you're returning multiple things, and you _must_ call `Out-Default` separately for each type of object to ensure that the outputs don't ever get mixed up by the formatter.
+**Quand vous appelez Out-Default.** Si vous devez renvoyer plusieurs types d'objets d'une commande externe, vous devriez nommer votre fonction de façon à ce qu'il soit évident pour l'utilisateur.ice que vous renvoyez plusieurs choses, et vous _devez_ appeler `Out-Default` séparément pour chaque type d'objet pour vous assurez que les sorties ne soient pas mélangées lors du formatage.
