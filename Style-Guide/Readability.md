@@ -1,38 +1,39 @@
 TODO: This section should probably be merged to [Code Layout and Formatting](Code-Layout-and-Formatting.md), and based on the [#15](https://github.com/PoshCode/PowerShellPracticeAndStyle/issues/15), we should remove or rewrite the backticks section.
+A FAIRE : Cette section devrait être fusionnée avec [Code Layout and Formatting](Code-Layout-and-Formatting.md), et sur la base du [#15](https://github.com/PoshCode/PowerShellPracticeAndStyle/issues/15), nous devrions effacer ou réécrire la section sur le caractère d'accent grave.
 
-# READ-01 Indent your code
+# LIRE-01 Indentez votre code
 
-Consider this code example:
+Voyez cet exemple de code :
 
 ```PowerShell
-if ($this -gt $that) {
-    Do-Something -with $that
+if ($ceci -gt $cela) {
+    Do-QuelqueChose -avec $cela
 }
 ```
 
-And now consider this one:
+Et maintenant celui-ci :
 
 ```PowerShell
-if ($this -gt $that)
+if ($ceci -gt $cela)
 {
-    Do-Something -with $that
+    Do-QuelqueChose -avec $cela
 }
 ```
 
-Neither of these is better than the other. Ask 100 coders which they prefer and you'll get roughly half liking either one. Now, when you start dealing with commands that accept script blocks as parameters, things can get trickier because of the way PowerShell parses syntax. "Wrong" is wrong. With scripting constructs, like the two examples above, there's no functional difference.
+Aucun de ces deux exemples n'est meilleur que l'autre. Demandez à 100 codeur.euse.s lequel ielles préfèrent et chacun sera préféré par environ la moitié d'entre elleux. Maintenant, quand vous commencez à travailler avec des commandes qui acceptent des blocs de script en paramètres, les choses peuvent devenir plus épineuses à cause de la façon dont PowerShell analyse la syntaxe. "Mauvais" est mauvais. Avec les constructions de scripts, comme les deux exemples ci-dessus, il n'y a pas de différence fonctionnelle.
 
-Continuing in that vein, understand that the following are basically guidelines from mass consensus; they're not hard-and-fast rules. That said, there are arguments in favor of these, and you should consider the arguments before dismissing these ideas.
+Pour rester dans cette veine, comprenez que ce qui suit est basiquement un ensemble de directives vers un consensus de masse ; ce ne sont pas des règles gravées dans la roche. Ceci étant dit, il y a des arguments en leur faveur, et vous devriez donner à ces arguments votre considération avant de rejeter ces idées.
 
-First, format your code properly. The convention is to indent within constructs, to make it clearer what "belongs to" the construct.
+Premièrement, formatez votre code convenablement. La convention est d'indenter dans les structures, pour rendre plus clair ce qui "appartient" aux structures.
 
 ```PowerShell
-foreach ($computer in $computers) {
+foreach ($ordinateur in $ordinateurs) {
     Do-This
     Get-Those
 }
 ```
 
-You will probably be reviled if you don't format carefully.
+Vous serez probablement vilipendé.e si vous ne faites pas attention à votre formatage.
 
 # READ-02 Avoid backticks
 
