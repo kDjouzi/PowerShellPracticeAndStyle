@@ -1,4 +1,5 @@
 TODO: This section should probably be merged to [Code Layout and Formatting](Code-Layout-and-Formatting.md), and based on the [#15](https://github.com/PoshCode/PowerShellPracticeAndStyle/issues/15), we should remove or rewrite the backticks section.
+
 A FAIRE : Cette section devrait être fusionnée avec [Code Layout and Formatting](Code-Layout-and-Formatting.md), et sur la base du [#15](https://github.com/PoshCode/PowerShellPracticeAndStyle/issues/15), nous devrions effacer ou réécrire la section sur le caractère d'accent grave.
 
 # LIRE-01 Indentez votre code
