@@ -14,39 +14,39 @@ gps -Name Explorer
 Get-Process -Name Explorer
 ```
 
-#### Use full parameter names.
+#### Utilisez les noms complets des paramètres.
 
-Because there are so many commands in PowerShell, it's impossible for every scripter to know every command. Therefore it's useful to be explicit about your parameter names for the sake of readers who may be unfamiliar with the command you're using. This will also help you avoid bugs if a future change to the command alters the parameter sets.
+Parce qu'il y a un très grand nombre de commandes dans PowerShell, il est impossible que chaque scripteur.se connaisse chaque commande. Il est ainsi utile d'être explicite au niveau des noms de paramètres pour les lecteur.ice.s qui pourraient ne pas être familier.ère.s de la commande que vous utilisez. Cela vous aidera aussi à éviter les bugs si un changement apporté à la commande altère les assignations de paramètres.
 
 ```PowerShell
-# Do not write:
+# N'écrivez pas :
 Get-Process Explorer
 
-# Instead write:
+# Ecrivez plutôt :
 Get-Process -Name Explorer
 ```
 
-#### Use full, explicit paths when possible.
+#### Utilisez autant que possible des chemins complets et explicites.
 
-When writing scripts, it's really only safe to use `..` or `.` in a path if you have previously explicitly set the location (within the script), and even then you should beware of using relative paths when calling .Net methods or legacy/native applications, because they will use the `[Environment]::CurrentDirectory` rather than PowerShell's present working directory (`$PWD`). Because checking for these types of errors is tedious (and because they are easy to over-look) it's best to avoid using relative paths altogether, and instead, base your paths off of $PSScriptRoot (the folder your script is in) when necessary.
+Quand vous écrivez des scripts, il n'est sûr d'utiliser `..` ou `.` dans un chemin que si vous en avez précédemment déterminé l'emplacement (à l'intérieur du script), et même dans ce cas vous devriez vous méfier de l'utilisation de chemins relatifs lorsque vous utilisez des méthodes .Net ou des aplications anciennes/natives, car elles utiliseront `[Environment]::CurrentDirectory` plutôt que le dossier de travail présent de PowerShell (`$PWD`). Puisque vérifier la présence de ce type d'erreurs est fastidieux (et parce qu'elles sont faciles à oublier) il vaut mieux éviter d'utiliser des chemins relatifs de façon générale, et plutôt, de baser vos chemins sur $PSScriptRoot (le dossier où votre script se trouve) si nécessaire.
 
 ```PowerShell
-# Do not write:
+# N'écrivez pas :
 Get-Content .\README.md
 
-# Especially do not write:
+# N'écrivez surtout pas :
 [System.IO.File]::ReadAllText(".\README.md")
 
-# Instead write:
+# Ecrivez plutôt :
 Get-Content -Path (Join-Path -Path $PSScriptRoot -ChildPath README.md)
 
-# Or even use string concatenation:
+# Vous pouvez même utiliser la concaténation de chaînes :
 [System.IO.File]::ReadAllText("$PSScriptRoot\README.md")
 ```
 
-##### Avoid the use of `~` to represent the home folder.
+##### Evitez d'utiliser `~` pour représenter le dossier d'origine.
 
-The meaning of ~ is unfortunately dependent on the "current" provider at the time of execution. This isn't really a style issue, but it's an important rule for code you intend to share anyway. Instead, use `${Env:UserProfile}` or `(Get-PSProvider -PSProvider FileSystem).Home` ...
+Le sens de ~ est dépend malheureusement du fournisseur "actuel" au moment de l'exécution. Ce n'est pas, en soi, un problème de style, mais c'est de toute façon une règle importante pour le code que vous comptez partager. Utlisez plutôt `${Env:UserProfile}` ou `(Get-PSProvider -PSProvider FileSystem).Home` ...
 
 ```PowerShell
 PS C:\Windows\system32> cd ~
