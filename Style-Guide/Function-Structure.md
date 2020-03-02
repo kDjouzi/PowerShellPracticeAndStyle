@@ -80,14 +80,14 @@ function Get-USCitizenCapability {
 
 #### Spécifiez un attribut OutputTypesi la fonction avancée revoie un objet ou une collection d'objets.
 
-If the function returns different object types depending on the parameter set provide one per parameter set.
+Si la fonction retourne des types d'objets différents selon l'ensemble de paramètres, fournissez un type de retour par ensemble de paramètres.
 
 ```PowerShell
 [OutputType([<TypeLiteral>], ParameterSetName = "<Name>")]
 [OutputType("<TypeNameString>", ParameterSetName = "<Name>")]
 ```
 
-#### When a ParameterSetName is used in any of the parameters, always provide a DefaultParameterSetName in the CmdletBinding attribute.
+#### Quand un ParameterSetName est utilisé dans les paramètres, fournissez toujours un DefaultParameterSetName dans l'attribut CmdletBinding.
 
 ```PowerShell
 function Get-User {
@@ -107,160 +107,163 @@ function Get-User {
 }
 ```
 
-#### When using advanced functions or scripts with CmdletBinding attribute avoid validating parameters in the body of the script when possible and use parameter validation attributes instead.
+#### Quand vous utilisez des fonctions avancées ou des scripts avec l'attribut CmdletBinding, évitez si possible de valider les paramètres dans le corps du script et utilisez plutôt des attributs de validation de paramètres.
 
-* **AllowNull** Validation Attribute
+* Attribut de validation **AllowNull**
 
-  The AllowNull attribute allows the value of a mandatory parameter to be null ($null).
+  L'attribut de validation AllowNull permet que la valeur d'un paramètre obligatoire soit nulle ($null).
 
   ```PowerShell
   param (
       [Parameter(Mandatory = $true)]
       [AllowNull()]
       [String]
-      $ComputerName
+      $NomOrdinateur
   )
   ```
 
-* **AllowEmptyString** Validation Attribute
+* Attribut de validation **AllowEmptyString**
 
-  The AllowEmptyString attribute allows the value of a mandatory parameter to be an empty string ("").
+  L'attribut de validation AllowEmptyString permet que la valeur d'un paramètre obligatoire soit une chaîne de caractères vide ("").
 
   ```PowerShell
   param (
       [Parameter(Mandatory = $true)]
       [AllowEmptyString()]
       [String]
-      $ComputerName
+      $NomOrdinateur
   )
   ```
 
-* **AllowEmptyCollection** Validation Attribute
+* Attribut de validation **AllowEmptyCollection**
 
-  The AllowEmptyCollection attribute allows the value of a mandatory parameter to be an empty collection (@()).
+  L'attribut de validation AllowEmptyCollection permet que la valeur d'un paramètre obligatoire soit une collection vide (@()).
 
   ```PowerShell
   param (
       [Parameter(Mandatory = $true)]
       [AllowEmptyCollection()]
       [String[]]
-      $ComputerName
+      $NomOrdinateur
   )
   ```
 
-* **ValidateCount** Validation Attribute
+* Attribut de validation **ValidateCount**
 
-  The ValidateCount attribute specifies the minimum and maximum number
-  of parameter values that a parameter accepts. Windows PowerShell
-  generates an error if the number of parameter values in the command that
-  calls the function is outside that range.
+  L'attribut de validation ValidateCount spécifie le nombre de valeurs
+  minimum et maximum qu'un paramètre accepte. Windows PowerShell génère
+  une erreur si le nombre de valeurs du paramètre dans la commande qui
+  appelle la fonction est en-dehors de cette portée.
 
   ```PowerShell
   param (
       [Parameter(Mandatory = $true)]
       [ValidateCount(1,5)]
       [String[]]
-      $ComputerName
+      $NomOrdinateur
   )
   ```
 
-* **ValidateLength** Validation Attribute
+* Attribut de validation **ValidateLength**
 
-  The ValidateLength attribute specifies the minimum and maximum number
-  of characters in a parameter or variable value. Windows PowerShell generates an
-  error if the length of a value specified for a parameter or a variable
-  is outside of the range.
+  L'attribut ValidateLength spécifie le nombre minimum et maximum de
+  caractères dans la valeur d'un paramètre ou d'une variable.
+  Windows PowerShell génère une erreur si la longueur d'une valeur spécifiée
+  pour un paramètre ou une variable est en-dehors de cette portée.
 
   ```PowerShell
   param (
       [Parameter(Mandatory = $true)]
       [ValidateLength(1,10)]
       [String[]]
-      $ComputerName
+      $NomOrdinateur
   )
   ```
 
-* **ValidatePattern** Validation Attribute
+* Attribut de validation **ValidatePattern**
 
-  The ValidatePattern attribute specifies a regular expression that
-  is compared to the parameter or variable value. Windows PowerShell generates
-  an error if the value does not match the regular expression
-  pattern.
+  L'attribut ValidatePattern spécifie une expression régulière qui est
+  comparée à la valeur du paramètre ou de la variable. Windows PowerShell
+  génère une erreur si la valeur ne correspond pas aux paramètres de cette
+  expression régulière.
 
   ```PowerShell
   param (
       [Parameter(Mandatory = $true)]
       [ValidatePattern("[0-9][0-9][0-9][0-9]")]
       [String[]]
-      $ComputerName
+      $NomOrdinateur
   )
   ```
 
-* **ValidateRange** Validation Attribute
+* Attribut de validation **ValidateRange**
 
-  The ValidateRange attribute specifies a numeric range for each
-  parameter or variable value. Windows PowerShell generates an error
-  if any value is outside that range.
+  L'attribut ValidateRange spécifie une portée numérique pour chaque
+  valeur de paramètre ou variable. Windows PowerShell génère une erreur
+  si une valeur est en-dehors de cette portée.
 
   ```PowerShell
   param (
       [Parameter(Mandatory = $true)]
       [ValidateRange(0,10)]
       [Int]
-      $Attempts
+      $Tentatives
   )
   ```
 
-* **ValidateScript** Validation Attribute
+* Attribut de validation **ValidateScript**
 
-  The ValidateScript attribute specifies a script that is used 
-  to validate a parameter or variable value. Windows PowerShell
-  pipes the value to the script, and generates an error if the
-  script returns "false" or if the script throws an exception.
-
-  When you use the ValidateScript attribute, the value
-  that is being validated is mapped to the $_ variable. You can
-  use the $_ variable to refer to the value in the script.
-
+  L'attribut ValidateScript spécifie un script utilisé pour
+  valider la valeur d'un paramètre ou d'une variable.
+  Windows PowerShell envoie la valeur dans le script, et
+  génère une erreur si le script renvoie "faux" ou s'il lance
+  une exception.
+  
+  Quand vous utilisez l'attribut ValidateScript, la valeur
+  en validation est attachée à la variable $_ . Vous pouvez
+  utiliser la variable $_ pour vous référer à cette valeur
+  dans le script.
+  
   ```PowerShell
   param (
       [Parameter()]
       [ValidateScript({$_ -ge (get-date)})]
       [DateTime]
-      $EventDate
+      $DateEvenement
   )
   ```
 
-* **ValidateSet** Attribute
+* Attribut de validation **ValidateSet**
 
-  The ValidateSet attribute specifies a set of valid values for a
-  parameter or variable. Windows PowerShell generates an error if a
-  parameter or variable value does not match a value in the set. In
-  the following example, the value of the Detail parameter can only
-  be "Low," "Average," or "High."
+  L'attribut ValidateSet spécifie un ensemble de valeurs valides pour
+  un paramètre ou une variable. Windows PowerShell génère une erreur
+  si la valeur d'un paramètre ou une variable ne correspond à aucune
+  valeur de l'ensemble. Dans l'exemple suivant, la valeur du paramètre
+  $Detail peut seulement être "Bas", "Moyen" ou "Haut".
 
   ```PowerShell
   param (
       [Parameter(Mandatory = $true)]
-      [ValidateSet("Low", "Average", "High")]
+      [ValidateSet("Bas", "Moyen", "Haut")]
       [String[]]
       $Detail
   )
   ```
 
-* **ValidateNotNull** Validation Attribute
+* Attribut de validation **ValidateNotNull**
 
-  The ValidateNotNull attribute specifies that the parameter
-  value cannot be null ($null). Windows PowerShell generates an
-  error if the parameter value is null.
-
-  The ValidateNotNull attribute is designed to be used when the
-  type of the parameter value is not specified or when the specified
-  type will accept a value of Null. (If you specify a type that will
-  not accept a null value, such as a string, the null value will be
-  rejected without the ValidateNotNull attribute, because it does not
-  match the specified type.)
-
+  L'attribut de validation ValidateNotNull spécifie que la
+  valeur du paramètre ne peut pas être nulle ($null).
+  Windows PowerShell génère une erreur si la valeur du paramètre
+  est nulle.
+  
+  L'attribut ValidateNotNull est fait pour être utilisé quand le type
+  de valeur de paramètre n'est pas spécifiée ou quand le type spécifié
+  accepte une valeur nulle. (Si vous spécifiez un type qui n'acceptera
+  pas de valeur nulle, comme le type string, la valeur nulle sera rejetée
+  même sans l'attribut ValidateNotNull, parce qu'elle ne correspond pas
+  au type spécifié.)
+  
   ```PowerShell
   param (
       [Parameter(Mandatory = $true)]
@@ -269,19 +272,19 @@ function Get-User {
   )
   ```
 
-* **ValidateNotNullOrEmpty** Validation Attribute
+* Attribut de validation **ValidateNotNullOrEmpty**
 
-  The ValidateNotNullOrEmpty attribute specifies that the parameter
-  value cannot be null ($null) and cannot be an empty string ("").
-  Windows PowerShell generates an error if the parameter is used in
-  a function call, but its value is null, an empty string, or an empty
-  array.
+  L'attribut ValidateNullOrEmpty spécifie que la valeur de paramètre
+  ne peut pas être nulle ($null), ni être une chaîne vide ("").
+  Windows PowerShell génère une erreur si le paramètre est utilisé
+  dans un appel de fonction, mais que sa valeru est nulle, une chaîne
+  vide, ou un tableau vide.
 
   ```PowerShell
   param (
       [Parameter(Mandatory = $true)]
       [ValidateNotNullOrEmpty()]
       [String[]]
-      $UserName
+      $NomUtilisateur
   )
   ```
