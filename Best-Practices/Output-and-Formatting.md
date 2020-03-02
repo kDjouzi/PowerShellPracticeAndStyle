@@ -36,14 +36,15 @@ CmdletBinding active aussi les commutateurs des flux Warning et Error, ainsi que
 
 ## Utilisez des fichiers de format pour vos objets personnalisés
 
-Vous ne devriez pas utiliser de commandes de format à l'intérieur des fonctions. Vous devriez plutôt inclure un fichier `nommodule.format.ps1xml` dans le champs FormatToProcess dans le manifeste PSD1 de votre module, et définissez un `PSTypeName` sur vos objets, fe façon à e que PowerShell formate la sortie de la façon que vous voulez, automatiquement.
+Vous ne devriez pas utiliser de commandes de format à l'intérieur des fonctions. Vous devriez plutôt inclure un fichier `nommodule.format.ps1xml` dans le champs FormatToProcess dans le manifeste PSD1 de votre module, et définissez un `PSTypeName` sur vos objets, fe façon à ce que PowerShell formate la sortie de la façon que vous voulez, automatiquement.
 
-## Only output one "kind" of thing at a time
+## Ne sortez qu'une "sorte" de chose à la fois
 
-You should avoid mixing different types of objects in the output of a single command, because you may get empty rows in your output or cause table output to break into list output, etc.
+vous devriez évitez de mélanger différents types d'objets dans la sortie d'une seule commande, car vous pourriez avoir des lignes vides dans votre sortie ou casser une sortie "tableau" en sortie.s liste, etc.
 
-For the sake of tools and command-search, you should indicate with the `[OutputType()]` attribute the output type(s) of your scripts, functions or cmdlets (see about_Functions_OutputTypeAttribute for more information).
+Pour le bien des outils et de la recherche de commandes, vous devriez indiquer le.s type.s de sortie de vos scripts, fonctions ou Cmdlets avec `[OutputType()]` (voir la [documentation officielle d'outputType](https://docs.microsoft.com/fr-fr/powershell/module/microsoft.powershell.core/about/about_functions_outputtypeattribute) pour plus d'informations).
 
+Quand vous combinez les sorties de plusieurs types d'objets, ils devraient généralement être
 When you combine the output of multiple types objects, they should generally be derived from a common basetype (like FileInfo and DirectoryInfo come from System.IO.FileSystemInfo), or should have format or type files which cause them to output the same columns. In particular, you must avoid outputting strings interspersed in your output.
 
 ### Two important exceptions to the single-type rule
