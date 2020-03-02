@@ -16,27 +16,27 @@ Quand vous informez l'utilisateur.ice d'où ils en sont sur le script, ou que vo
 
 La sortie Progress est éphémère, cependant, dans le sens où son affichage n'est pas persistant. Vous ne devriez rien mettre que l'utilisateur.ice _doive_ voir ou puisse vouloir vérifier après complétion du script dans le flux de progrès.
 
-## utilisez Write-Verbose pour donner des détails à quelqu'un utilisant votre script
+## Utilisez Write-Verbose pour donner des détails à quelqu'un utilisant votre script
 
 Vous devriez utiliser la sortie verbeuse pour les détails à propos de valeurs en calcul, ou expliquer pourquoi un certain chemin d'exécution a été choisi. Cela devrait comprendre les informations utiles _mais pas nécessaires_ pour toute personne utilisant le script, fournissant des informations de statut telles que "Serveur1 : tâche accomplie", ou des informations logiques comme "Serveur2 à jour, aucun traitement", mais ne devrait pas être utilisé pour les vrais résultats ou les informations importantes.
 
-## Use Write-Debug to give information to someone maintaining your script
+## Utilisez Write-Debugpour donner des informations à quelqu'un maintenant votre script
 
-You should use the debug output stream for output that is useful for script debugging (ie: "Now entering main loop" or "Result was null, skipping to end of loop"), or to display the value of a variable before a conditional statement, so the maintainer can break into the debugger if necessary.
+Vous devriez utiliser le flux de sortie de debug pour les sorties utiles au debug de scritp (i.e. "Entrée dans la boucle principale" ou "Résultat nul, avancée vers la fin de la boucle"), ou pour afficher la valeur d'une variable avant une structure conditionnelle, de façon à ce que la personne effectuant la maintenance puisse entrer dans le débogueur si nécessaire.
 
-> TIP: When debugging you should be aware that you can set `$DebugPreference = "Continue"` to see this information on screen without entering a breakpoint prompt.
+> ASTUCE : Quand vous déboguez vous pouvez paramétrer `$DebugPreference = "Continue"` pour avoir ces informations à l'écran sans être invité.e à utiliser un point d'arrêt.
 
-## Use CmdletBinding if you are using output streams
+## Utilisez CmdletBinding si vous utilisez des flux de sortie
 
-As we've already written elsewhere, you should probably [always use CmdletBinding](../Style-Guide/Code-Layout-and-Formatting.md#always-start-with-cmdletbinding). 
+Comme nous l'avons déjà écrit autre part, vous devriez probablement [toujours utiliser CmdletBinding](../Style-Guide/Code-Layout-and-Formatting.md#always-start-with-cmdletbinding).
 
-Using CmdletBinding is particularly important, however, when you're using Write-Verbose and Write-Debug, as the Verbose and Debug output streams are off by default, and the `[CmdletBinding()]` attribute enables the common `-Verbose` and `-Debug` switches which turn those streams on.
+Utiliser CmdletBinding est particulièrement important, de telle façon que, quand vous utilisez Write-Verbose et Write-Debug, alors que les flux de sortie Verbose et Debug sont désactivés par défaut, l'attribut `[CmdletBinding()]` active les commutateurs communs `-Verbose` et `-Debug` qui lancent ces flux.
 
-CmdletBinding also enables the switches for the Warning and Error streams, as well as ways of collecting those streams into variables. You should read the [always use CmdletBinding](../Style-Guide/Code-Layout-and-Formatting.md#always-start-with-cmdletbinding) topic for more information.
+CmdletBinding active aussi les commutateurs des flux Warning et Error, ainsi que des façons de collecter des flux dans des variables. Vous devriez lire le sujet [toujours utiliser CmdletBinding](../Style-Guide/Code-Layout-and-Formatting.md#always-start-with-cmdletbinding) pour plus d'informations.
 
-## Use Format Files for your custom objects
+## Utilisez des fichiers de format pour vos objets personnalisés
 
-You should not use format commands inside functions. Instead you should include a `modulename.format.ps1xml` file in the FormatsToProcess field of your module's PSD1 manifest, and define a `PSTypeName` on your objects, so that PowerShell will format your output the way you want, automatically.
+Vous ne devriez pas utiliser de commandes de format à l'intérieur des fonctions. Vous devriez plutôt inclure un fichier `nommodule.format.ps1xml` dans le champs FormatToProcess dans le manifeste PSD1 de votre module, et définissez un `PSTypeName` sur vos objets, fe façon à e que PowerShell formate la sortie de la façon que vous voulez, automatiquement.
 
 ## Only output one "kind" of thing at a time
 
