@@ -4,14 +4,13 @@ En général, préférez l'utilisation de noms complets et explicites pour les c
 
 #### Utilisez le nom complet de chaque commande.
 
-Chaque scripteur PowerShell apprend les noms réels des commandes, mais différentes personnes apprennent différents aliases (e.g. : ls pour les utilisatueurs Linux, dir ppour les utilisateurs DOS, gci...).
-Every PowerShell scripter learns the actual command names, but different people learn and use different aliases (e.g.: ls for Linux users, dir for DOS users, gci ...).  In your shared scripts you should use the more universally known full command name. As a bonus, sites like GitHub will highlight commands properly when you use the full Verb-Noun name:
+Chaque scripteur PowerShell apprend les noms réels des commandes, mais différentes personnes apprennent différents aliases (e.g. : ls pour les utilisatueurs Linux, dir ppour les utilisateurs DOS, gci...). Dans vos scripts partagés vous devriez toujours utiliser les noms complets les plus connus des commandes. Et en bonus, certains sites comme GitHub mettront les commandes en lumière comme il le faut quand vous utilisez le nom Verbe-Nom complet de votre commande :
 
 ```PowerShell
-# Do not write:
+# N'écrivez pas :
 gps -Name Explorer
 
-# Instead write:
+# Ecrivez plutôt :
 Get-Process -Name Explorer
 ```
 
