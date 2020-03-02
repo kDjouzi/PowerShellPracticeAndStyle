@@ -48,7 +48,7 @@ Les recommandations sont réparties dans ces sections :
 
 ### Etat Actuel :
 
-Souvenez-vous de [ce que nous entendons par _Bonnes Pratiques_](#what-are-best-practices)
+Souvenez-vous de [ce que nous entendons par _Bonnes Pratiques_](#que-sont-les-bonnes-pratiques-)
 
 Les *Bonnes Pratiques dans PowerShell* sont en constante évolution, et continuent d'être éditées et mises à jour tant que les outils (et la compréhgension qu'a notre communauté de ceux-ci) évolue. Nous vous encourageaons à vérifier si une nouvelle édition est sortie au moins deux fois par an, en visitant [https://github.com/PoshCode/PowerShellPracticeAndStyle](https://github.com/PoshCode/PowerShellPracticeAndStyle)
 
