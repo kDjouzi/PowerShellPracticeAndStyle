@@ -1,26 +1,24 @@
 ### Formatage des sorties
 
-TODO: This whole document is STILL ROUGH DRAFT
 A FAIRE : La totalité de ce document est TOUJOURS UN BROUILLON
 
 ## N'utilisez Write-Host que si vous êtes sûr.e de vous
 
 Avant PowerShell 5, Write-Host n'a pas du tout de fonctionnalité dans les scripts non interactifs. Il ne peut pas être capturé ou redirigé, et devrait par conséquent n'être utilisé que dans des fonctions qui montrent ("Show") ou formatent ("Format") des sorties, ou pour afficher quelque chose qui fasse partie d'une invite interagissant avec l'utilisateur.
 
-Autrement dit : vous ne devriez pas utiliser Write-Host pour créer des sorties de script à moins que votre script (ou fonction, ou quoi que ce soit) utilise le verbe "Show" (comme dans "Show-Performance") ou le verbe "Format" (comme dans "Format-Hex"), ou ait un paramètre `-Formatted`.
-That is: you should not use Write-Host to create script output unless your script (or function, or whatever) uses the Show verb (as in, Show-Performance) or the Format verb (as in, Format-Hex), or has a `-Formatted` switch parameter. You may also use it to build a interactions with the user in other cases (e.g. to write extra information to the screen before prompting the user for a choice or input).
+Autrement dit : vous ne devriez pas utiliser Write-Host pour créer des sorties de script à moins que votre script (ou fonction, ou quoi que ce soit) utilise le verbe "Show" (comme dans "Show-Performance") ou le verbe "Format" (comme dans "Format-Hex"), ou ait un paramètre `-Formatted`. Vous pourriez aussi l'utiliser pour construire des interactions avec l'utilisateur dans d'autres cas (e.g. pour ajouter des informations supplémentaires à l'écran avant d'inviter l'utilisateur à saisir un choix ou des entrées).
 
-Generally, you should consider the other Write-* commands first when trying to give information to the user.
+Vous devriez généralement commencer par envisager d'utiliser les autres commandes Write-* pour tenter de donnes des informations à l'utilisateur.ice.
 
-## Use Write-Progress to give progress information to someone running your script
+## Utilisez Wirite-Progress pour donner des informations sur la progression de la tâche aux personnes utilisant votre script
 
-When you're letting the user know how far through the script they are, or just making sure they know that _something_ is happening, Write-Progress is the right command to use. In the case of graphical hosts or remote jobs, this output can be shown to the user in real time, even when verbose and other streams are being collected and logged.
+Quand vous informez l'utilisateur.ice d'où ils en sont sur le script, ou que vous voulez être sûr.e qu'ils sachent que _quelque chose_ est en train de se passer, Write-Progress est la bonne commande. Dans le cas d'hôtes graphiques ou de travaux à distance, cette sortie peut être montrée à l'utilisateur.ice en temps réel, même quand le verbeux et d'autres flux de données sont collectés et loggés.
 
-Progress output is ephemeral, however, in that it doesn't stick around. You should not put anything exclusively in the progress stream that the user _needs_ to see, or might want to review after the script finishes.
+La sortie Progress est éphémère, cependant, dans le sens où son affichage n'est pas persistant. Vous ne devriez rien mettre que l'utilisateur.ice _doive_ voir ou puisse vouloir vérifier après complétion du script dans le flux de progrès.
 
-## Use Write-Verbose to give details to someone running your script
+## utilisez Write-Verbose pour donner des détails à quelqu'un utilisant votre script
 
-You should use verbose output for information that contains details about the value of computation, or the reason why a certain execution path was chosen. It should be information that is useful _but not necessary_ for anyone running the script, providing status information such as "Server1 processed", or logic information such as "Server2 up-to-date, skipped", but shouldn't be used for actual results or important information.
+Vous devriez utiliser la sortie verbeuse pour les détails à propos de valeurs en calcul, ou expliquer pourquoi un certain chemin d'exécution a été choisi. Cela devrait comprendre les informations utiles _mais pas nécessaires_ pour toute personne utilisant le script, fournissant des informations de statut telles que "Serveur1 : tâche accomplie", ou des informations logiques comme "Serveur2 à jour, aucun traitement", mais ne devrait pas être utilisé pour les vrais résultats ou les informations importantes.
 
 ## Use Write-Debug to give information to someone maintaining your script
 
