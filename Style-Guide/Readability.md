@@ -35,9 +35,9 @@ foreach ($ordinateur in $ordinateurs) {
 
 Vous serez probablement vilipendé.e si vous ne faites pas attention à votre formatage.
 
-# READ-02 Avoid backticks
+# LIRE-02 Evitez les accents graves
 
-Consider this:
+Voyez ceci :
 
 ```PowerShell
 Get-WmiObject -Class Win32_LogicalDisk `
@@ -45,9 +45,9 @@ Get-WmiObject -Class Win32_LogicalDisk `
               -ComputerName SERVER2
 ```
 
-In general, the community feels you should avoid using those backticks as "line continuation characters" when possible. They're hard to read, easy to miss, and easy to mistype. Also, if you add an extra whitespace after the backtick in the above example, then the command won't work. The resulting error is hard to correlate to the actual problem, making debugging the issue harder.
+En général, la communauté pense que vous devriez autant que possible éviter d'utiliser ces accents graves comme "caractères de continuation de ligne". Ils sont difficiles à lire, faciles à rater, et faciles à mal taper. De plus, si vous ajoutez un espace vide en fin de ligne dans l'exemple ci-dessus, alors la commande ne fonctionnera pas. L'erreur résultante est difficile à corréler avec le problème réel, rendant le débogage de ce problème plus ardu.
 
-Here's an alternative:
+Voici une alternative :
 
 ```PowerShell
 $GetWmiObjectParams = @{
@@ -58,6 +58,6 @@ $GetWmiObjectParams = @{
 Get-WmiObject @GetWmiObjectParams
 ```
 
-The technique is called _splatting_. It lets you get the same nice, broken-out formatting without using the backtick. You can also line break after almost any comma, pipe character, or semicolon without using a backtick.
+Cette technique s'appelle le _splatting_. Elle vous laisse avoir ce même formatage sympathique et éclaté sans utiliser l'accent grave. Vous pouvez aussi casser la ligne après quasiment n'importe quel caractère virgule, point-virgule, ou autre caractère _pipeline_ sans utiliser d'accent grave.
 
-The backtick is not universally hated - but it can be inconvenient. If you have to use it for line breaks, well then, use it. Just try not to have to.
+L'accent grave n'est pas universellement détesté - mais il peut être inconvenant. Si vous devez l'utiliser pour casser les lignes, hé bien, utilisez-le. Essayez juste de ne pas avoir à le faire.
