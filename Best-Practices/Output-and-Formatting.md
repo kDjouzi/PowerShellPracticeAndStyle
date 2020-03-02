@@ -1,11 +1,13 @@
-### Formatting Output
+### Formatage des sorties
 
 TODO: This whole document is STILL ROUGH DRAFT
+A FAIRE : La totalité de ce document est TOUJOURS UN BROUILLON
 
-## Don't use Write-Host unless you really mean it
+## N'utilisez Write-Host que si vous êtes sûr.e de vous
 
-Previous to PowerShell 5, Write-Host has no functionality at all in non-interactive scripts. It cannot be captured or redirected, and therefore should only be used in functions which are "Show"ing or "Format"ing output, or to display something as part of an interactive prompt to the user.
+Avant PowerShell 5, Write-Host n'a pas du tout de fonctionnalité dans les scripts non interactifs. Il ne peut pas être capturé ou redirigé, et devrait par conséquent n'être utilisé que dans des fonctions qui montrent ("Show") ou formatent ("Format") des sorties, ou pour afficher quelque chose qui fasse partie d'une invite interagissant avec l'utilisateur.
 
+Autrement dit : vous ne devriez pas utiliser Write-Host pour créer des sorties de script à moins que votre script (ou fonction, ou quoi que ce soit) utilise le verbe "Show" (comme dans "Show-Performance") ou le verbe "Format" (comme dans "Format-Hex"), ou ait un paramètre `-Formatted`.
 That is: you should not use Write-Host to create script output unless your script (or function, or whatever) uses the Show verb (as in, Show-Performance) or the Format verb (as in, Format-Hex), or has a `-Formatted` switch parameter. You may also use it to build a interactions with the user in other cases (e.g. to write extra information to the screen before prompting the user for a choice or input).
 
 Generally, you should consider the other Write-* commands first when trying to give information to the user.
